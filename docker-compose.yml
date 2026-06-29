@@ -1,0 +1,69 @@
+version: '2.2'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: world_forge_backend
+    volumes:
+      - ./backend:/var/www
+    depends_on:
+      - db
+    user: "1000:1000"
+    ports:
+    - "8080:8080"
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_world_forge
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - backend
+
+  db:
+    image: mysql:8
+    container_name: mysql_world_forge
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: world_forge
+    ports:
+      - "3306:3306"
+
+  frontend:
+    image: node:20
+    container_name: world_forge_frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    command: >
+       sh -c "
+        if [ ! -f package.json ]; then
+          npm create vite@latest . -- --template react;
+          npm install;
+          npm install tailwindcss @tailwindcss/vite;
+        else
+          npm install;
+        fi &&
+        npm run dev -- --host
+        "
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: world_forge_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+    - db
+
