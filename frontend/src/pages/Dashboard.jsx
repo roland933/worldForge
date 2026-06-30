@@ -1,6 +1,6 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 import PageHeader from "../components/layout/PageHeader";
-
+import ActiveProjectCard from "../components/dashboard/ActiveProjectCard";
 export default function Dashboard() {
     return (
         <DashboardLayout>
@@ -10,7 +10,33 @@ export default function Dashboard() {
                 subtitle="Welcome back, Roland 👋"
             />
 
-            {/* Dashboard Widgets */}
+        <div className="grid grid-cols-12 gap-6">
+
+    <div className="col-span-8">
+
+        <ActiveProjectCard />
+
+    </div>
+
+    <div className="col-span-4">
+
+     
+    </div>
+
+    <div className="col-span-6">
+
+      
+
+    </div>
+
+    <div className="col-span-6">
+
+      
+
+    </div>
+
+</div>
+           
 
         </DashboardLayout>
     );
