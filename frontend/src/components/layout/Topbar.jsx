@@ -9,25 +9,11 @@ export default function Topbar() {
 
     return (
 
-        <header className="h-20 border-b border-[#242938] bg-[#151922] px-8 flex items-center justify-between">
-
-            {/* Left */}
-
-            <div>
-
-                <h2 className="text-2xl font-bold">
-                    Good Morning 👋
-                </h2>
-
-                <p className="text-gray-400 mt-1">
-                    Welcome back, Roland
-                </p>
-
-            </div>
+        <header className="h-20 border-b border-[#242938] bg-[#151922] px-8 flex items-center justify-end">
 
             {/* Right */}
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 ">
 
                 {/* Search */}
 
