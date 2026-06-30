@@ -1,16 +1,18 @@
 export const mockProjects = [
     {
         id: 1,
-        title: "Pandora's Box",
+        name: "Pandora's Box",
         progress: 72,
         status: "In Progress",
+        description:"description",
         updatedAt: "Today",
     },
     {
         id: 2,
-        title: "Minotaur",
+        name: "Minotaur",
         progress: 100,
         status: "Completed",
         updatedAt: "2 days ago",
+         description:"description",
     },
 ];

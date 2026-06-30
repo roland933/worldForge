@@ -13,7 +13,7 @@ export default function ActiveGameCard({project}) {
             </p>
 
             <h2 className="mt-3 text-3xl font-bold">
-               {project.title}
+               {project.name}
             </h2>
 
             <p className="mt-4 max-w-2xl text-gray-400 leading-7">
