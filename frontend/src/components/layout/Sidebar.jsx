@@ -12,12 +12,12 @@ import {
 
 const menu = [
     {
-        title: "Dashboard",
+        title: "My forge",
         icon: Home,
         active: true,
     },
     {
-        title: "Projects",
+        title: "Worlds",
         icon: FolderOpen,
     },
     {

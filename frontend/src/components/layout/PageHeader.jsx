@@ -8,7 +8,7 @@ export default function PageHeader({
 
             <div>
 
-                <h1 className="text-3xl font-bold text-white">
+                <h1 className="text-3xl font-bold text-white uppercase">
                     {title}
                 </h1>
 

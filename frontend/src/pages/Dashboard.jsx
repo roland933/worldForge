@@ -1,12 +1,25 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 import PageHeader from "../components/layout/PageHeader";
-import ActiveProjectCard from "../components/dashboard/ActiveProjectCard";
+import ActiveGameCard from "../components/dashboard/ActiveGameCard";
+import { getGames} from "../services/gameServices";
+import StatCard from "../components/dashboard/StatCard";
+import {
+    FolderOpen,
+    CheckSquare,
+    Image,
+    NotebookPen
+} from "lucide-react";
 export default function Dashboard() {
+    const games = getGames();
+    
+    const activeGame = games[0];
+
+
     return (
         <DashboardLayout>
 
             <PageHeader
-                title="Dashboard"
+                title="My forge"
                 subtitle="Welcome back, Roland 👋"
             />
 
@@ -14,12 +27,39 @@ export default function Dashboard() {
 
     <div className="col-span-8">
 
-        <ActiveProjectCard />
+        <ActiveGameCard project={activeGame}/>
 
     </div>
 
     <div className="col-span-4">
 
+        <div className="grid gap-6">
+
+                <StatCard
+                    title="Worlds"
+                    value={6}
+                    icon={FolderOpen}
+                />
+
+                <StatCard
+                    title="Tasks"
+                    value={21}
+                    icon={CheckSquare}
+                />
+
+                <StatCard
+                    title="Assets"
+                    value={184}
+                    icon={Image}
+                />
+
+                <StatCard
+                    title="Notes"
+                    value={37}
+                    icon={NotebookPen}
+                />
+
+    </div>
      
     </div>
 

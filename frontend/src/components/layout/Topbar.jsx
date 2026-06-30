@@ -4,6 +4,8 @@ import {
     Search,
     User
 } from "lucide-react";
+import Button from "../ui/Button/Button";
+
 
 export default function Topbar() {
 
@@ -35,47 +37,11 @@ export default function Topbar() {
                 </div>
 
                 {/* New */}
+                <Button icon={Plus}>
+                    New forge
+                </Button>
+     
 
-                <button
-                    className="
-                    h-12
-                    px-5
-                    rounded-xl
-                    bg-violet-600
-                    hover:bg-violet-500
-                    transition
-                    flex
-                    items-center
-                    gap-2
-                    font-medium
-                    "
-                >
-
-                    <Plus size={18} />
-
-                    New
-
-                </button>
-
-                {/* Notification */}
-
-                <button
-                    className="
-                    w-12
-                    h-12
-                    rounded-xl
-                    bg-[#1A2030]
-                    hover:bg-[#242B3C]
-                    transition
-                    flex
-                    items-center
-                    justify-center
-                    "
-                >
-
-                    <Bell size={20} />
-
-                </button>
 
                 {/* Avatar */}
 
