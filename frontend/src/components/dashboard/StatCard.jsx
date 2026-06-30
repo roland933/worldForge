@@ -2,15 +2,14 @@ import { IconColors } from "../../constants/iconColors";
 import {Card} from "../ui/Card/Card";
 
 export default function StatCard({
-    title,
-    value,
+    stat,
     icon: Icon,
     iconColor = IconColors.PURPLE,
 }) {
 
     return (
 
-        <Card>
+        <Card className="min-h-36">
 
             <div className="flex items-center justify-between">
 
@@ -18,13 +17,13 @@ export default function StatCard({
 
                     <p className="text-sm text-gray-400">
 
-                        {title}
+                        {stat.title}
 
                     </p>
 
                     <h2 className="mt-3 text-3xl font-bold">
 
-                        {value}
+                        {stat.value}
 
                     </h2>
 

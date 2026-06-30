@@ -3,16 +3,14 @@ import PageHeader from "../components/layout/PageHeader";
 import ActiveGameCard from "../components/dashboard/ActiveGameCard";
 import { getGames} from "../services/gameServices";
 import StatCard from "../components/dashboard/StatCard";
-import {
-    FolderOpen,
-    CheckSquare,
-    Image,
-    NotebookPen
-} from "lucide-react";
+import { mockStats } from "../data/mockStats"
+
+import { StatsSection } from "../components/dashboard/StatsSection";
 export default function Dashboard() {
     const games = getGames();
     
     const activeGame = games[0];
+    const stats = mockStats;
 
 
     return (
@@ -33,33 +31,7 @@ export default function Dashboard() {
 
     <div className="col-span-4">
 
-        <div className="grid gap-6">
-
-                <StatCard
-                    title="Worlds"
-                    value={6}
-                    icon={FolderOpen}
-                />
-
-                <StatCard
-                    title="Tasks"
-                    value={21}
-                    icon={CheckSquare}
-                />
-
-                <StatCard
-                    title="Assets"
-                    value={184}
-                    icon={Image}
-                />
-
-                <StatCard
-                    title="Notes"
-                    value={37}
-                    icon={NotebookPen}
-                />
-
-    </div>
+        <StatsSection  stats={stats}/>
      
     </div>
 
