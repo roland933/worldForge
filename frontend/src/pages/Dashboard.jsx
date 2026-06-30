@@ -6,12 +6,16 @@ import StatCard from "../components/dashboard/StatCard";
 import { mockStats } from "../data/mockStats"
 
 import { StatsSection } from "../components/dashboard/StatsSection";
+import { RecentActivity } from "../components/dashboard/RecentActivity/RecentActivity";
+import { mockActivities } from "../data/mockActivities";
+
+
 export default function Dashboard() {
     const games = getGames();
     
     const activeGame = games[0];
     const stats = mockStats;
-
+    const activities = mockActivities;
 
     return (
         <DashboardLayout>
@@ -36,7 +40,7 @@ export default function Dashboard() {
     </div>
 
     <div className="col-span-6">
-
+        <RecentActivity activities={activities}/>
       
 
     </div>
