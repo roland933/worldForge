@@ -1,6 +1,6 @@
 import { Card } from "../../ui/Card/Card"
-import { GameStatus } from "../GameStatus/index"
-import { GameProgress } from "../GameProgress/index"
+import { GameStatus } from "../GameStatus/GameStatus"
+import { GameProgress } from "../GameProgress/GameProgress"
 import Button from "../../ui/Button/Button"
 
 export function GameCard({game,onOpen}) {
@@ -22,7 +22,7 @@ export function GameCard({game,onOpen}) {
 
             <GameProgress  progress={game.progress}/>
 
-            <Button onClick={() => onOpen(game)}>
+            <Button className="mt-5" onClick={() => onOpen(game)}>
                Continue
             </Button>
 

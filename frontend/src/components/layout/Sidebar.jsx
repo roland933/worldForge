@@ -10,31 +10,38 @@ import {
     User
 } from "lucide-react";
 
+import { NavLink } from "react-router-dom";
+
 const menu = [
     {
         title: "My forge",
         icon: Home,
-        active: true,
+        path: "/"
     },
     {
         title: "Worlds",
         icon: FolderOpen,
+        path: "/games"
     },
     {
         title: "Tasks",
         icon: CheckSquare,
+        path: "/tasks"
     },
     {
         title: "Assets",
         icon: Image,
+         path: "/assets"
     },
     {
         title: "Notes",
         icon: NotebookPen,
+         path: "/notes"
     },
     {
         title: "Prompt Library",
         icon: Sparkles,
+         path: "/prompt_library"
     },
 ];
 
@@ -80,26 +87,34 @@ export default function Sidebar() {
 
                     return (
 
-                        <button
-                            key={item.title}
-                            className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 mb-2 transition-all duration-200
-                            
-                            ${
-                                item.active
-                                    ? "bg-violet-600 text-white shadow-lg"
-                                    : "text-gray-400 hover:bg-[#1E2331] hover:text-white"
-                            }
-                            
-                            `}
-                        >
+                         <NavLink
+                                key={item.title}
+                                to={item.path}
+                                className={({ isActive }) => `
+                                    w-full
+                                    flex
+                                    items-center
+                                    gap-3
+                                    rounded-xl
+                                    px-4
+                                    py-3
+                                    mb-2
+                                    transition-all
+                                    duration-200
 
-                            <Icon size={20} />
+                                    ${
+                                        isActive
+                                            ? "bg-violet-600 text-white shadow-lg"
+                                            : "text-gray-400 hover:bg-[#1E2331] hover:text-white"
+                                    }
+                                `}
+                            >
 
-                            <span>
-                                {item.title}
-                            </span>
+                <Icon size={20} />
 
-                        </button>
+                <span>{item.title}</span>
+
+            </NavLink>
 
                     );
                 })}

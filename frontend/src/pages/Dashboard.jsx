@@ -13,7 +13,7 @@ import { mockActions } from "../data/mockActions";
 import { getDashboard } from "../services/dashboardService";
 
 
-export default function Dashboard() {
+export  function Dashboard() {
     const games = getGames();
     const dashboard = getDashboard();
     const activeGame = games[0];

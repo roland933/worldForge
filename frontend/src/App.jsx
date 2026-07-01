@@ -1,10 +1,34 @@
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+
+import  {Dashboard}  from "./pages/Dashboard"
+import { Games } from "./pages/Games";
 
 import './App.css'
 
-import Dashboard from "./pages/Dashboard";
-
 function App() {
-    return <Dashboard />;
+
+    return (
+
+        <BrowserRouter>
+
+            <Routes>
+
+                <Route
+                    path="/"
+                    element={<Dashboard />}
+                />
+
+                <Route
+                    path="/games"
+                    element={<Games />}
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+
+    );
+
 }
 
 export default App;
