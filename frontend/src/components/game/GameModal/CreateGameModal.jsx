@@ -1,11 +1,11 @@
 import { Modal } from "../../ui/Modal/Modal";
 import { GameForm } from "../GameForm/GameForm";
 
-export function CreateGameModal({handleSubmit}) {
+export function CreateGameModal({isOpen,onClose,onSubmit}) {
 
     return (
-        <Modal>
-            <GameForm handleSubmit={handleSubmit}/>
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <GameForm onSubmit={onSubmit}/>
         </Modal>
 )
 
