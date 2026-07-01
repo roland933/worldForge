@@ -8,15 +8,18 @@ import { mockStats } from "../data/mockStats"
 import { StatsSection } from "../components/dashboard/StatsSection";
 import { RecentActivity } from "../components/dashboard/RecentActivity/RecentActivity";
 import { mockActivities } from "../data/mockActivities";
+import { QuickActions } from "../components/dashboard/QuickActions/QuickActions";
+import { mockActions } from "../data/mockActions";
+import { getDashboard } from "../services/dashboardService";
 
 
 export default function Dashboard() {
     const games = getGames();
-    
+    const dashboard = getDashboard();
     const activeGame = games[0];
     const stats = mockStats;
     const activities = mockActivities;
-
+    
     return (
         <DashboardLayout>
 
@@ -41,13 +44,12 @@ export default function Dashboard() {
 
     <div className="col-span-6">
         <RecentActivity activities={activities}/>
-      
 
     </div>
 
     <div className="col-span-6">
 
-      
+        <QuickActions actions={dashboard.actions}/>
 
     </div>
 

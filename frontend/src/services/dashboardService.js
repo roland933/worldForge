@@ -1,6 +1,7 @@
 import { mockStats } from "../data/mockStats";
 import { mockActivities } from "../data/mockActivities";
 import { getGames} from "../services/gameServices";
+import { mockActions } from "../data/mockActions";
 export function getDashboard() {
 
         const games = getGames();
@@ -9,6 +10,7 @@ export function getDashboard() {
                 activeGame: games[0],
                 stats: mockStats,
                 activities: mockActivities,
+                actions: mockActions,
          };
 
 }
