@@ -1,4 +1,4 @@
-export const Routes = {
+export const WorldForgeRoutes = {
 
     DASHBOARD: "/",
 
@@ -9,6 +9,8 @@ export const Routes = {
     TASKS: "/tasks",
 
     NOTES: "/notes",
+
+    PROMPT_LIBRARY: "/prompt_library",
 
     SETTINGS: "/settings"
 
