@@ -8,18 +8,38 @@ export function AssetFilter() {
     return(
          
         <FilterBar>
-             <div className="w-96">
-                <SearchInput placeholder="Asset name..."/>
-            </div>
 
-            <div className="w-60">
-                <AssetCategorySelect />
-            </div>
+    <div className="w-96">
 
-            <div className="w-60">
-                <AssetTypeSelect />
-            </div>
-        </FilterBar>
+        <label className="mb-2 block text-sm font-medium text-slate-300">
+            Search
+        </label>
+
+        <SearchInput placeholder="Search asset..." />
+
+    </div>
+
+    <div className="w-52">
+
+        <label className="mb-2 block text-sm font-medium text-slate-300">
+            Category
+        </label>
+
+        <AssetCategorySelect />
+
+    </div>
+
+    <div className="w-52">
+
+        <label className="mb-2 block text-sm font-medium text-slate-300">
+            Type
+        </label>
+
+        <AssetTypeSelect />
+
+    </div>
+
+</FilterBar>
 
           
 
