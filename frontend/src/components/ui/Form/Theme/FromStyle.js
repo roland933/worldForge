@@ -8,6 +8,7 @@ export const FORM_STYLES = {
 
     input: `
         w-full
+         h-[50px]
         rounded-xl
         border
         border-slate-700
@@ -35,6 +36,7 @@ export const FORM_STYLES = {
     `,
 
     select: `
+       h-[50px]
         w-full
         rounded-xl
         border

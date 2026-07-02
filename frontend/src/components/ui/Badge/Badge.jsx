@@ -1,6 +1,6 @@
 import { badgeStyles } from "./badgeStyles";
 import { badgeConfig } from "./badgeConfig";
-export default function Badge({
+export  function Badge({
     children,
     variant = badgeConfig.defaultVariant,
     className = "",
