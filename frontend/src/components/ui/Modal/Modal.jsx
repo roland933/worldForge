@@ -10,7 +10,7 @@ export function Modal({isOpen,onClose, className = "", children, ...props }) {
             `}
             {...props}
         >
-        <div className="bg-[#1A1F2B] rounded-xl p-6 w-7xl">
+        <div className="bg-[#1A1F2B] rounded-xl  w-full  max-w-4xl">
             {children}
 
             </div>
