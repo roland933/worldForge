@@ -1,0 +1,18 @@
+export const mockTaskPriority = [
+
+    {
+        id: 1,
+        name: "Low"
+    },
+
+    {
+        id: 2,
+        name: "Medium"
+    },
+
+    {
+        id: 3,
+        name: "High"
+    }
+
+];
