@@ -5,7 +5,7 @@ export function ForgeSelect() {
     const forges = getGames();
     return(
         <Select>
-            <option>All</option>
+            <option >Choose a forge</option>
             {forges.map(f => (
                 <option key={f.id} value={f.id}>{f.name}</option>
             ))}

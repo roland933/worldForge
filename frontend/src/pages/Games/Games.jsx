@@ -7,6 +7,7 @@ import { SearchInput } from "../../components/ui/SearchInput/SearchInput";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import { getGames } from "../../services/gameServices";
 import { CreateGameModal } from "../../components/game/GameModal/CreateGameModal";
+import { GameFilter } from "../../components/game/GameFilter/GameFilter";
 
 export function Games() {
 
@@ -26,13 +27,13 @@ export function Games() {
         <DashboardLayout>
             <CreateGameModal isOpen={isCreateOpen} onClose={ handleCloseModal}/>
 
-            <PageHeader title="Games" >
+            <PageHeader title="Forges" >
 
-                <Button variant={ButtonVariants.SECONDARY} onClick={handleOpenModal}>New game</Button>
+                <Button variant={ButtonVariants.SECONDARY} onClick={handleOpenModal}>New forge</Button>
             </PageHeader>
 
 
-            <SearchInput />
+           <GameFilter />
 
           
             <GameList games={games} />
