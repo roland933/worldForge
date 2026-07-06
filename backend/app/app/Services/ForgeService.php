@@ -1,9 +1,18 @@
 <?php
+namespace App\Services;
 
-class ForgeService {
+use App\Repositories\ForgeRepository;
 
-    public function index() {
-        
+
+final class ForgeService
+{
+    public function __construct(
+        private ForgeRepository $forgeRepository
+    ) {
     }
 
+    public function getForges()
+    {
+        return $this->forgeRepository->all();
+    }
 }
