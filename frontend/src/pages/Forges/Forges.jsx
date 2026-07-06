@@ -18,8 +18,9 @@ export function Forges() {
     };
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const [errors, setErrors] = useState({});
-    const [forges, setForges] = useState([]);
     const [form, setForm] = useState( initialForm );
+    const [forges, setForges] = useState([]);
+    
 
         useEffect(() => {
 
