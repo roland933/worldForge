@@ -1,6 +1,6 @@
 import { mockStats } from "../data/mockStats";
 import { mockActivities } from "../data/mockActivities";
-import { getGames} from "../services/gameServices";
+import { getGames} from "./forgeServices";
 import { mockActions } from "../data/mockActions";
 export function getDashboard() {
 

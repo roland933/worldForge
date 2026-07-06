@@ -15,4 +15,16 @@ final class ForgeService
     {
         return $this->forgeRepository->all();
     }
+
+    public function createForge(array $data) 
+    {
+
+         return $this->forgeRepository->create($data);
+    
+    }
+
+    public function getForge(int $id) {
+
+        return $this->forgeRepository->find($id);
+    }
 }

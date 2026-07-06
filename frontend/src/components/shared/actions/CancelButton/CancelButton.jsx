@@ -4,7 +4,7 @@ import { ButtonVariants } from "../../../ui/Button/buttonVariants";
 export function CancelButton({onClose}) {
 
     return (
-       <Button onClick={onClose} variant={ButtonVariants.SECONDARY}>Cancel</Button>
+       <Button   onClick={onClose} variant={ButtonVariants.SECONDARY}>Cancel</Button>
     )
 
 }

@@ -1,7 +1,7 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 import PageHeader from "../components/layout/PageHeader";
 import ActiveGameCard from "../components/dashboard/ActiveGameCard";
-import { getGames} from "../services/gameServices";
+import { getGames} from "../services/forgeServices";
 import StatCard from "../components/dashboard/StatCard";
 import { mockStats } from "../data/mockStats"
 

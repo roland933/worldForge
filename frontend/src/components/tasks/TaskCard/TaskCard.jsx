@@ -1,7 +1,7 @@
 import { Card } from "../../ui/Card/Card";
 import Button from "../../ui/Button/Button";
 import { Badge } from "../../ui/Badge/Badge";
-import { getGames } from "../../../services/gameServices";
+import { getGames } from "../../../services/forgeServices";
 
 export function TaskCard({ task, onOpen }) {
     return (

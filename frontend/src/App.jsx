@@ -1,7 +1,7 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 
 import  {Dashboard}  from "./pages/Dashboard"
-import { Games } from "./pages/Games/Games";
+import { Forges } from "./pages/Forges/Forges";
 
 import './App.css'
 import { Tasks } from "./pages/Tasks/Tasks";
@@ -25,7 +25,7 @@ function App() {
 
                 <Route
                     path={`${WorldForgeRoutes.GAMES}`}
-                    element={<Games />}
+                    element={<Forges />}
                 />
 
                  <Route

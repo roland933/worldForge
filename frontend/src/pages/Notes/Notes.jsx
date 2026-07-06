@@ -7,7 +7,7 @@ import Button from "../../components/ui/Button/Button";
 import { ButtonVariants } from "../../components/ui/Button/buttonVariants";
 import { SearchInput } from "../../components/ui/SearchInput/SearchInput";
 import DashboardLayout from "../../layouts/DashboardLayout";
-import { getGames } from "../../services/gameServices";
+import { getGames } from "../../services/forgeServices";
 import { getNotes } from "../../services/notes/noteService";
 import { useState } from "react";
 

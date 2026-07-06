@@ -5,6 +5,7 @@ export default function Button({
     onClick,
     variant = buttonConfig.defaultVariant,
     className = "",
+    type="button",
     icon: Icon,
     ...props
 }) {
@@ -15,6 +16,7 @@ export default function Button({
 
         <button
             onClick={onClick}
+            type={type}
             className={`
                 inline-flex
                 items-center

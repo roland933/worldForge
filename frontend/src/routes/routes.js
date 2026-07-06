@@ -2,7 +2,7 @@ export const WorldForgeRoutes = {
 
     DASHBOARD: "/",
 
-    GAMES: "/games",
+    GAMES: "/forges",
 
     ASSETS: "/assets",
 

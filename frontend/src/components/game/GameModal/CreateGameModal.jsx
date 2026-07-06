@@ -7,7 +7,7 @@ import { ModalFooter } from "../../ui/Modal/ModalFooter";
 import { ModalHeader } from "../../ui/Modal/ModalHeader";
 import { GameForm } from "../GameForm/GameForm";
 
-export function CreateGameModal({isOpen,onClose,onSubmit}) {
+export function CreateGameModal({isOpen,onClose,onSubmit,onChange,values,errors}) {
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -15,15 +15,9 @@ export function CreateGameModal({isOpen,onClose,onSubmit}) {
                 Create new forge
             </ModalHeader>
 
-            <ModalContent>
-                    <GameForm onSubmit={onSubmit}/>
-            </ModalContent>
+      
+            <GameForm onSubmit={onSubmit} values={values} onChange={onChange} onClose={onClose} errors={errors}/>
 
-            <ModalFooter>
-                 <Button >Start forging</Button>
-                 <CancelButton onClose={onClose}/>
-            </ModalFooter>
-            
          
         </Modal>
 )

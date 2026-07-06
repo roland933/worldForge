@@ -1,4 +1,4 @@
-import { getGame } from "../../../services/gameServices";
+import { getGame } from "../../../services/forgeServices";
 import { GameCard } from "../GameCard/GameCard";
 
 export function GameList({games}) {

@@ -9,4 +9,6 @@ class Forge extends Model
 {
     /** @use HasFactory<\Database\Factories\ForgeFactory> */
     use HasFactory;
+
+    protected $guarded = [];
 }

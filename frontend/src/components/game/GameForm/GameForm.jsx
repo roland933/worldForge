@@ -5,49 +5,72 @@ import { FormField } from "../../ui/Form/FormField";
 import { Input } from "../../ui/Form/Input/Input";
 import { Select } from "../../ui/Form/Select/Select";
 import { Textarea } from "../../ui/Form/Textarea/Textarea";
+import { ModalContent } from "../../ui/Modal/ModalContent";
+import { ModalFooter } from "../../ui/Modal/ModalFooter";
+import { WorldSelect } from "../../shared/world/WorldSelect";
+import { CancelButton } from "../../shared/actions/CancelButton/CancelButton";
 
-export function GameForm({onSubmit}) {
-  const worlds = getWorlds();
+
+export function GameForm({
+    values,
+    onChange,
+    onClose,
+    onSubmit,
+    onCancel,
+    errors
+}) {
+
     return (
-    
-     <Form>
-       <FormField label="Game name" >
 
-         <Input placeholder=""/>
+        <form onSubmit={onSubmit}>
 
-       </FormField>
+            <ModalContent>
 
-       <FormField label="Choose a world" >
+                <FormField label="Name" error={errors.name}>
 
-         <Select>
-                {worlds.map(world => (
+                    <Input
+                        value={values.name}
+                        onChange={e => onChange("name", e.target.value)}
+                    />
 
-                <option
-                    key={world.id}
-                    value={world.id}
-                >
+                </FormField>
 
-                    {world.name}
+                <FormField label="World">
 
-                </option>
+                    <WorldSelect
+                        value={values.world_id}
+                        onChange={e => onChange("world_id", e.target.value)}
+                    />
 
-            ))}
-         </Select>
+                </FormField>
 
-       </FormField>
+                <FormField label="Description">
 
-       <FormField label="Description" >
+                    <Textarea
+                        value={values.description}
+                        onChange={e => onChange("description", e.target.value)}
+                    />
 
-         <Textarea />
+                </FormField>
 
-       </FormField>
+            </ModalContent>
 
-       
+            <ModalFooter>
 
+                <CancelButton
+                    onClose={onClose}
+                />
 
-     </Form>
+                <Button type="submit">
 
-)
+                    Start Forging
 
+                </Button>
+
+            </ModalFooter>
+
+        </form>
+
+    );
 
 }

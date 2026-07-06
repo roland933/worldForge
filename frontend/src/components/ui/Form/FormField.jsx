@@ -20,7 +20,7 @@ export function FormField({label="",className="",error,children,...props}) {
         )}
         {error && (
         <p className="mt-2 text-sm text-red-400">
-            {error}
+            {error[0]}
         </p>
         )}
 
