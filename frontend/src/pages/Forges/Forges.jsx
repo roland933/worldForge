@@ -39,6 +39,7 @@ export function Forges() {
 
     const handleCloseModal = () => {
         setIsCreateOpen(false)
+        setErrors({})
         
     }
 

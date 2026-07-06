@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\ForgeService;
 use Illuminate\Http\JsonResponse;
+use App\Http\Requests\CreateForgeRequest;
 
 class ForgeController extends Controller
 {
@@ -20,10 +21,14 @@ class ForgeController extends Controller
         );
     }
 
-    public function create(Request $request) 
+    public function store(CreateForgeRequest $request) 
     {
 
-        return response()->json($this->forgeService->createForge($request->all()));
+        $forge = $this->forgeService->createForge(
+        $request->validated()
+    );
+
+    return response()->json($forge);
 
     }
     
