@@ -11,7 +11,7 @@ export const FORM_STYLES = {
          h-[50px]
         rounded-xl
         border
-        border-slate-700
+    
         bg-slate-900
         px-4
         py-3
@@ -40,7 +40,7 @@ export const FORM_STYLES = {
         w-full
         rounded-xl
         border
-        border-slate-700
+      
         bg-slate-900
         px-4
         py-3

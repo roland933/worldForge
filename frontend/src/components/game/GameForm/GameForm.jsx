@@ -29,15 +29,17 @@ export function GameForm({
                 <FormField label="Name" error={errors.name}>
 
                     <Input
+                        error={errors.name}
                         value={values.name}
                         onChange={e => onChange("name", e.target.value)}
                     />
 
                 </FormField>
 
-                <FormField label="World">
+                <FormField label="World" error={errors.world_id}>
 
                     <WorldSelect
+                        error={errors.world_id}
                         value={values.world_id}
                         onChange={e => onChange("world_id", e.target.value)}
                     />

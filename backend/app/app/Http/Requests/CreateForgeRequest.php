@@ -26,7 +26,7 @@ class CreateForgeRequest extends FormRequest
 
                 'name' => ['required', 'string', 'max:255'],
 
-                'world_id' => ['required', 'exists:worlds,id'],
+               'world_id' => ['required', 'integer'],
 
                 'description' => ['nullable', 'string'],
 
@@ -36,13 +36,22 @@ class CreateForgeRequest extends FormRequest
     }
 
     public function messages(): array
-{
-    return [
+        {
+            return [
 
-        'name.required' => 'Please enter a forge name.',
+                'name.required' => 'Please enter a forge name.',
 
-        'world_id.required' => 'Please select a world.'
+                'world_id.required' => 'Please select a world.'
 
-    ];
-}
+            ];
+        }
+
+        public function attributes(): array
+        {
+            return [
+
+                'world_id' => 'worlds'
+
+            ];
+        }
 }

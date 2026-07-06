@@ -11,10 +11,15 @@ import { GameFilter } from "../../components/game/GameFilter/GameFilter";
 
 export function Forges() {
 
-
+        const initialForm = {
+            name: "",
+            world_id: "",
+            description: ""
+    };
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const [errors, setErrors] = useState({});
     const [forges, setForges] = useState([]);
+    const [form, setForm] = useState( initialForm );
 
         useEffect(() => {
 
@@ -43,14 +48,7 @@ export function Forges() {
         
     }
 
-    const initialForm = {
-            name: "",
-            world_id: "",
-            description: ""
-    };
 
-
-    const [form, setForm] = useState( initialForm );
 
     const handleCreateForge = async (e) => {
             e.preventDefault();
