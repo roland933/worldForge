@@ -36,6 +36,7 @@ export function GraphCanvas({
                     style={{
                         left: playerPos?.x ,
                         top: playerPos?.y,
+                        transform: "translate(-50%, -120%)"
                     }}
                 >
                     P
