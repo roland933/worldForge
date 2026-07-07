@@ -4,12 +4,13 @@ namespace App\Services;
 use Illuminate\Support\Facades\File;
 use App\Generators\MapGenerator;
 use App\Generators\TemplateGenerator;
-
+use App\Generators\ReadmeGenerator;
 final class GenerateForgeService
 {
     public function __construct(
         private MapGenerator $mapGenerator,
-        private TemplateGenerator $templateGenerator
+        private TemplateGenerator $templateGenerator,
+        private ReadmeGenerator $readmeGenerator,
     ) {}
 
      public function generate(array $data)
@@ -31,6 +32,8 @@ final class GenerateForgeService
                 resource_path("templates/react-ts"),
                 $folder
             );
+
+            $this->readmeGenerator->generate($folder,$data['projectName']);
 
              $this->templateGenerator->generate(
                 $data["template"],
