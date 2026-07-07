@@ -7,11 +7,13 @@ services:
     container_name: world_forge_backend
     volumes:
       - ./backend:/var/www
+      - /home/whoo/Forges:/forges
     depends_on:
       - db
     user: "1000:1000"
     ports:
     - "8080:8080"
+     
 
   nginx:
     image: nginx:alpine
@@ -67,5 +69,4 @@ services:
     depends_on:
     - db
 
-volumes:
-  - mysql_data:/var/lib/mysql
+ 

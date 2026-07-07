@@ -13,6 +13,17 @@ export async function getForges() {
     }
 }
 
+export async function generateForge(data) {
+
+    try {
+    const response = await api.post("/generateForge",data);
+
+    return response.data;
+    }catch(error) {
+        console.log("hiba",error);
+    }
+}
+
 export async function createForge(data) {
     try {
     const response = await api.post("/forges", data);

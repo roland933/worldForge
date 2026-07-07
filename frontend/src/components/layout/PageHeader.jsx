@@ -4,7 +4,7 @@ export default function PageHeader({
     children,
 }) {
     return (
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center  mb-8">
 
             <div>
 
@@ -19,9 +19,9 @@ export default function PageHeader({
                 )}
 
             </div>
-
+            <div className="ml-auto flex gap-3">    
             {children}
-
+            </div>
         </div>
     );
 }

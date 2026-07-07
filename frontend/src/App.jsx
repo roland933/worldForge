@@ -9,6 +9,7 @@ import { WorldForgeRoutes } from "./routes/routes";
 import { Assets } from "./pages/Assets/Assets";
 import { Notes } from "./pages/Notes/Notes";
 import { PromptLibrary } from "./pages/PromptLibrary/PromptLibrary";
+import { GraphPlayground } from "./pages/GraphPlayground";
 
 function App() {
 
@@ -45,6 +46,11 @@ function App() {
                  <Route
                     path={`${WorldForgeRoutes.PROMPT_LIBRARY}`}
                     element={<PromptLibrary />}
+                />
+
+                  <Route
+                    path={`/playground`}
+                    element={<GraphPlayground />}
                 />
 
             </Routes>

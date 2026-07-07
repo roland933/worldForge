@@ -41,4 +41,10 @@ export const Menu = [
         icon: Sparkles,
         path: WorldForgeRoutes.PROMPT_LIBRARY
     },
+
+     {
+        title: "Playground",
+        icon: Sparkles,
+        path: '/playground'
+    },
 ];

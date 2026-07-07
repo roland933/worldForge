@@ -8,6 +8,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import { getForges, createForge } from "../../services/forgeServices";
 import { CreateGameModal } from "../../components/game/GameModal/CreateGameModal";
 import { GameFilter } from "../../components/game/GameFilter/GameFilter";
+import { GenerateForgeModal } from "../../components/game/GenerateForgeModal/GenerateForgeModal";
 
 export function Forges() {
 
@@ -17,6 +18,7 @@ export function Forges() {
             description: ""
     };
     const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const [isGenerateOpen, setIsGenerateOpen] = useState(false);
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState( initialForm );
     const [forges, setForges] = useState([]);
@@ -42,6 +44,18 @@ export function Forges() {
         setIsCreateOpen(true)
 
     }
+
+
+    const handleGenerateModal = () => {
+        setIsGenerateOpen(true)
+
+    }
+
+    const handleGenerateCloseModal = () => {
+        setIsGenerateOpen(false)
+
+    }
+
 
     const handleCloseModal = () => {
         setIsCreateOpen(false)
@@ -97,9 +111,17 @@ export function Forges() {
                     values={form}
             />
 
+            <GenerateForgeModal 
+                isOpenorgeModal 
+                isOpen={isGenerateOpen}
+                onClose={handleGenerateCloseModal}
+            
+            />
+
             <PageHeader title="Forges" >
 
                 <Button variant={ButtonVariants.SECONDARY} onClick={handleOpenModal}>New forge</Button>
+                <Button variant={ButtonVariants.SECONDARY} onClick={handleGenerateModal}>Generate forge</Button>
             </PageHeader>
 
 
