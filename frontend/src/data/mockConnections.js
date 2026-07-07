@@ -1,0 +1,13 @@
+export const mockConnections = [
+
+    {
+        from:1,
+        to:2
+    },
+
+    {
+        from:2,
+        to:3
+    }
+
+]

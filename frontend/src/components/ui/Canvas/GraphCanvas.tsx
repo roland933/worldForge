@@ -25,8 +25,22 @@ export function GraphCanvas({
     connections,
     player,
 }: GraphCanvasProps) {
+    const playerPos = nodes.find(n => n.id === player?.currentNode)
     return (
         <div className="relative w-full h-[700px] rounded-xl border border-slate-700 bg-slate-950 overflow-hidden">
+
+            {player &&  (
+                <div
+                   
+                    className="absolute w-10 h-10 rounded-full bg-indigo-500 border-2 border-white flex items-center justify-center text-sm text-white"
+                    style={{
+                        left: playerPos?.x ,
+                        top: playerPos?.y,
+                    }}
+                >
+                    P
+                </div>
+            )}
 
             {/* Connections */}
 

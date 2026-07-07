@@ -4,8 +4,19 @@ import  Button  from "../components/ui/Button/Button";
 import { ButtonVariants } from "../components/ui/Button/buttonVariants";
 import  PageHeader  from "../components/layout/PageHeader";
 import { GraphCanvas } from "../components/ui/Canvas/GraphCanvas";
+import { useState } from "react";
+import { mockConnections } from "../data/mockConnections";
+import { mockNodes } from "../data/mockNodes";
+
 
 export function PlaygroundPage() {
+     const [nodes] = useState(mockNodes);
+
+    const [connections] = useState(mockConnections);
+
+    const [player] = useState({
+        currentNode: 1
+    });
     return (
         <DashboardLayout>
 
@@ -61,7 +72,7 @@ export function PlaygroundPage() {
 
                     <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-700">
 
-                        <GraphCanvas />
+                        <GraphCanvas connections={connections} player={player} nodes={nodes} />
 
                     </div>
 
