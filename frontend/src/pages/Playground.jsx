@@ -3,6 +3,7 @@ import { Card } from "../components/ui/Card/Card";
 import  Button  from "../components/ui/Button/Button";
 import { ButtonVariants } from "../components/ui/Button/buttonVariants";
 import  PageHeader  from "../components/layout/PageHeader";
+import { GraphCanvas } from "../components/ui/Canvas/GraphCanvas";
 
 export function PlaygroundPage() {
     return (
@@ -60,9 +61,7 @@ export function PlaygroundPage() {
 
                     <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-700">
 
-                        <span className="text-slate-500">
-                            Graph Preview
-                        </span>
+                        <GraphCanvas />
 
                     </div>
 
