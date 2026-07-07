@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    { "id": 1, "x": 450, "y": 80,  "type": "start" },
+
+    { "id": 2, "x": 320, "y": 180, "type": "enemy" },
+    { "id": 3, "x": 580, "y": 180, "type": "enemy" },
+
+    { "id": 4, "x": 260, "y": 320, "type": "shop" },
+    { "id": 5, "x": 430, "y": 320, "type": "enemy" },
+    { "id": 6, "x": 620, "y": 320, "type": "treasure" },
+
+    { "id": 7, "x": 450, "y": 470, "type": "boss" }
+  ],
+
+  "connections": [
+    { "from": 1, "to": 2 },
+    { "from": 1, "to": 3 },
+
+    { "from": 2, "to": 4 },
+    { "from": 2, "to": 5 },
+
+    { "from": 3, "to": 5 },
+    { "from": 3, "to": 6 },
+
+    { "from": 4, "to": 7 },
+    { "from": 5, "to": 7 },
+    { "from": 6, "to": 7 }
+  ]
+}

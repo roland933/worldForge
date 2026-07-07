@@ -9,7 +9,7 @@ import { WorldForgeRoutes } from "./routes/routes";
 import { Assets } from "./pages/Assets/Assets";
 import { Notes } from "./pages/Notes/Notes";
 import { PromptLibrary } from "./pages/PromptLibrary/PromptLibrary";
-import { GraphPlayground } from "./pages/GraphPlayground";
+import { PlaygroundPage } from "./pages/Playground";
 
 function App() {
 
@@ -50,7 +50,7 @@ function App() {
 
                   <Route
                     path={`/playground`}
-                    element={<GraphPlayground />}
+                    element={<PlaygroundPage />}
                 />
 
             </Routes>
