@@ -30,6 +30,11 @@ function App() {
                 />
 
                  <Route
+                    path={`/playground`}
+                    element={<PlaygroundPage />}
+                />
+
+                 <Route
                     path={`${WorldForgeRoutes.TASKS}`}
                     element={<Tasks />}
                 />
@@ -48,10 +53,7 @@ function App() {
                     element={<PromptLibrary />}
                 />
 
-                  <Route
-                    path={`/playground`}
-                    element={<PlaygroundPage />}
-                />
+                 
 
             </Routes>
 

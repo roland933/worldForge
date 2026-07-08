@@ -25,7 +25,7 @@ export  function Dashboard() {
 
             <PageHeader
                 title="My forge"
-                subtitle="Welcome back, Roland 👋"
+                subtitle="Welcome back, Roland"
             />
 
         <div className="grid grid-cols-12 gap-6">

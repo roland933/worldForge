@@ -8,14 +8,14 @@ export function SearchInput({className,...props}) {
                     w-full
                     rounded-xl
                     border
-                    border-[#2B3245]
-                    bg-[#1A2030]
+                    border-white/12
+                    bg-white/[0.03]
                     px-4
                     py-3
-                    text-white
+                    
                     outline-none
                     transition
-                    placeholder:text-gray-500
+                    placeholder:text-violet-100
                     focus:border-violet-500
                     ${className}
                 `}

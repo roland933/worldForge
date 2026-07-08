@@ -17,10 +17,17 @@ export const Menu = [
         path: WorldForgeRoutes.DASHBOARD
     },
     {
-        title: "Worlds",
+        title: "Forges",
         icon: FolderOpen,
         path: WorldForgeRoutes.GAMES
     },
+
+     {
+        title: "Playground",
+        icon: Sparkles,
+        path: '/playground'
+    },
+
     {
         title: "Tasks",
         icon: CheckSquare,
@@ -42,9 +49,5 @@ export const Menu = [
         path: WorldForgeRoutes.PROMPT_LIBRARY
     },
 
-     {
-        title: "Playground",
-        icon: Sparkles,
-        path: '/playground'
-    },
+    
 ];

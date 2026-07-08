@@ -16,7 +16,7 @@ export function BottomContent() {
 
                 </button>
 
-                <div className="mt-5 flex items-center gap-3 rounded-xl bg-[#1A2030] p-3">
+                <div className="mt-5 flex items-center gap-3 rounded-xl bg-white/4 p-3">
 
                     <div className="w-11 h-11 rounded-full bg-violet-600 flex items-center justify-center">
 
@@ -30,7 +30,7 @@ export function BottomContent() {
                             Roland
                         </h3>
 
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-violet-100">
                             Indie Developer
                         </p>
 

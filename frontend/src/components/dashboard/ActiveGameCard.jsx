@@ -30,8 +30,8 @@ export default function ActiveGameCard({project}) {
 
             <div className="mt-8 flex items-center justify-between">
 
-                <span className="text-sm text-gray-500">
-                    Last updated: ${project.updatedAt}
+                <span className="text-sm text-violet-100">
+                    Last updated: {project.updatedAt}
                 </span>
 
                     <Button >

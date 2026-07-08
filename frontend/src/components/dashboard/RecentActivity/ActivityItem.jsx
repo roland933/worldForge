@@ -1,7 +1,7 @@
 export function ActivityItem({activity}) {
 
     return (
-          <div className="flex items-center justify-between py-3 border-b border-gray-800">
+          <div className="flex items-center justify-between py-3 border-b border-violet-400/10">
 
             <div>
 

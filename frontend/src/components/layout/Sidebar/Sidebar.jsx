@@ -13,7 +13,13 @@ const menu = Menu;
 
 export default function Sidebar() {
     return (
-        <aside className="w-72 bg-[#151922] border-r border-[#242938] flex flex-col">
+       
+        <aside className="w-72  border-r bg-white/6
+                   backdrop-blur-3xl
+                    border border-white/5
+                    rounded-3xl
+
+shadow-[0_20px_80px_rgba(0,0,0,0.45)] flex flex-col">
 
             {/* Logo */}
 
@@ -33,7 +39,7 @@ export default function Sidebar() {
                             World Forge
                         </h1>
 
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-violet-300">
                             Game Development Hub
                         </p>
 
@@ -62,6 +68,7 @@ export default function Sidebar() {
                                     items-center
                                     gap-3
                                     rounded-xl
+                                    
                                     px-4
                                     py-3
                                     mb-2
@@ -70,8 +77,8 @@ export default function Sidebar() {
 
                                     ${
                                         isActive
-                                            ? "bg-violet-600 text-white shadow-lg"
-                                            : "text-gray-400 hover:bg-[#1E2331] hover:text-white"
+                                            ? "bg-violet-500/20 text-white border border-violet-400/40 shadow-[0_0_25px_rgba(139,92,246,0.25)]"
+                                            : "text-gray-400 hover:bg-white/5 hover:border-white/10 hover:text-white"
                                     }
                                 `}
                             >
@@ -92,5 +99,6 @@ export default function Sidebar() {
 
 
         </aside>
+      
     );
 }

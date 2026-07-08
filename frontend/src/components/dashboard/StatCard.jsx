@@ -15,7 +15,7 @@ export default function StatCard({
 
                 <div>
 
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-violet-200">
 
                         {stat.title}
 
@@ -34,8 +34,10 @@ export default function StatCard({
                         h-14
                         w-14
                         rounded-xl
-                        ${iconColor}
                         flex
+                        bg-violet-500/20
+                        border border-violet-400/40
+                        shadow-[0_0_20px_rgba(139,92,246,0.35)]
                         items-center
                         justify-center
                     `}

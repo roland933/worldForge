@@ -4,8 +4,9 @@ export const FilterBarStyle = {
                 gap-4
                 rounded-2xl
                 border
-                border-slate-700
-                bg-slate-900/50
+                bg-white/2 
+                backdrop-blur-xl
+                border-white/12 
                 p-5
                 mb-5`
     
