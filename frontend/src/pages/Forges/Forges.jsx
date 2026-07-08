@@ -120,7 +120,7 @@ export function Forges() {
 
             <PageHeader title="Forges" >
 
-                <Button variant={ButtonVariants.SECONDARY} onClick={handleOpenModal}>New forge</Button>
+                <Button variant={ButtonVariants.PRIMARY} onClick={handleOpenModal}>New forge</Button>
                 <Button variant={ButtonVariants.SECONDARY} onClick={handleGenerateModal}>Generate forge</Button>
             </PageHeader>
 

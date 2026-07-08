@@ -1,6 +1,6 @@
 export function Background() {
     return(
-        <div className="fixed inset-0 -z-20">
+        <div className="fixed inset-0 -z-10">
 
             <img src="/background.png"  className="w-full h-full object-cover"/>
 

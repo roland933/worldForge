@@ -23,7 +23,7 @@ export function GameCard({game,onOpen}) {
             <GameProgress  progress={game.progress}/>
 
             <Button className="mt-5" onClick={() => onOpen(game)}>
-               Continue
+               Open forge
             </Button>
 
         </Card>

@@ -6,9 +6,9 @@ export function ModalFooter({className="",children}) {
                 justify-end
                 gap-3
                 border-t
-                  rounded-b-xl
-                border-slate-700
-                bg-slate-800/40
+                  rounded-b-3xl
+               border-white/5
+                
                 px-6
                 py-4
             

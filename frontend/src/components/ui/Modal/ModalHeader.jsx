@@ -3,11 +3,12 @@ export function ModalHeader({className="",children}) {
         <div className={
             `
              border-b
-            border-slate-700
-            bg-slate-800/40
+            border-white/5
+           
             px-6
             py-4
-            rounded-t-xl
+            rounded-t-3xl
+            text-violet-200
             text-2xl
             
             ${className}
