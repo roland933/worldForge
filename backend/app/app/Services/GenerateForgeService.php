@@ -26,19 +26,13 @@ final class GenerateForgeService
                     File::makeDirectory($folder, 0755, true);
                 }
           
-          
-
-            File::copyDirectory(
-                resource_path("templates/react-ts"),
-                $folder
-            );
+        
+            $this->templateGenerator->generate( $data["template"], $folder);
 
             $this->readmeGenerator->generate($folder,$data['projectName']);
 
-             $this->templateGenerator->generate(
-                $data["template"],
-                $folder
-        );
+            $this->mapGenerator->generate($folder);  
+          
 
             return [
                 "success" => true

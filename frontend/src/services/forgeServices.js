@@ -17,10 +17,10 @@ export async function generateForge(data) {
 
     try {
     const response = await api.post("/generateForge",data);
-
+        console.log(response);
     return response.data;
     }catch(error) {
-        console.log("hiba",error);
+     throw(error)
     }
 }
 

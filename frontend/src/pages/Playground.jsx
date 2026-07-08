@@ -13,10 +13,27 @@ export function PlaygroundPage() {
      const [nodes] = useState(mockNodes);
 
     const [connections] = useState(mockConnections);
-
-    const [player] = useState({
+ 
+    const [player,setPlayer] = useState({
         currentNode: 1
     });
+    
+    const movePalyer = () => {
+        
+        setPlayer(prev => ({
+            ...prev,
+            currentNode: prev.currentNode + 1
+        }));
+    
+    }
+
+    const reset = () => {
+        setPlayer({currentNode:1})
+    
+    }   
+
+ 
+
     return (
         <DashboardLayout>
 
@@ -50,6 +67,7 @@ export function PlaygroundPage() {
 
                         <Button
                             className="w-full"
+                            onClick={movePalyer}
                             variant={ButtonVariants.SECONDARY}
                         >
                             Move Player
@@ -57,6 +75,7 @@ export function PlaygroundPage() {
 
                         <Button
                             className="w-full"
+                            onClick={reset}
                             variant={ButtonVariants.SECONDARY}
                         >
                             Reset
@@ -72,7 +91,7 @@ export function PlaygroundPage() {
 
                     <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-700">
 
-                        <GraphCanvas connections={connections} player={player} nodes={nodes} />
+                        <GraphCanvas connections={connections} player={player} nodes={nodes}  />
 
                     </div>
 
