@@ -24,7 +24,7 @@ export const nodeConfig: Record<NodeType, NodeConfig> = {
     },
 
     node: {
-        label: "Enemy",
+        label: "Node",
         color: "#8B5CF6",
         icon: "⚔️",
         style: "bg-violet-500 border-2 border-white/20 shadow-[0_0_25px_rgba(139,92,246,.35)]",
