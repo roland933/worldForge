@@ -75,6 +75,7 @@ export function PlaygroundPage() {
                                 connections={connections} 
                                 player={player} 
                                 nodes={nodes}
+                                selectedNode={selectedNode}
                                 handleSelectedNode={handleSelectedNode}  >
 
                             <GraphToolbar handleOpenPanel={handleOpenPanel} toolbarButtonType={toolbarButtonType}/>

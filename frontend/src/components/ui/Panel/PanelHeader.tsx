@@ -1,9 +1,11 @@
 type PanelHeaderProps = {
     title:string,
     subtitle?:string,
+    children?: React.ReactNode;
+
 }
 
-export function PanelHeader({title,subtitle}:PanelHeaderProps) {
+export function PanelHeader({title,subtitle,children}:PanelHeaderProps) {
 
     return (
 
@@ -15,6 +17,8 @@ export function PanelHeader({title,subtitle}:PanelHeaderProps) {
                 <p className="text-sm text-slate-400 mt-1">
                    {subtitle}
                 </p>
+
+                {children}
             </section>
 
     )

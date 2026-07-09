@@ -23,6 +23,7 @@ type GraphCanvasProps = {
     connections: Connection[];
     player?: Player;
     handleSelectedNode: (node: GraphNode) => void;
+     selectedNode:GraphNode
 };
 
 
@@ -30,6 +31,7 @@ export function GraphViewPort({
     nodes,
     connections,
     player,
+    selectedNode,
     handleSelectedNode
 }: GraphCanvasProps) {
     
@@ -98,12 +100,13 @@ export function GraphViewPort({
              return   <div
                     onClick={() => handleSelectedNode(node) }
                     key={node.id}
-                    className={`}
+                    className={`
                     absolute 
                     w-11 
                     h-11 
                     rounded-full
                     cursor-pointer
+                    ${selectedNode?.id === node.id ? 'shadow-[0_0_25px_rgba(139,92,246,.75)] !border-violet-400' : ''}
                     ${config.style}
                      flex 
                      items-center 

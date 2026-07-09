@@ -19,24 +19,28 @@ type NodePanelProps={
 }
 
 export function NodePanel({selectedNode}) {
-  useEffect(() => {
-    console.log(4444,selectedNode)
-  },[selectedNode])
+
   return (
   <Panel>
-    <PanelHeader title="Nodes" subtitle="Create and edit graph nodes."/>  
-    <Form>
+    <PanelHeader title="Nodes" subtitle="Create and edit graph nodes."/>
       
-      <FormField label="x:">
-          <Input value={selectedNode?.x}/>
-      </FormField>
+        
+     <div className="text-sm text-violet-200">
+       Id: <b>#{selectedNode?.id}</b>
+     </div>
+    <Form>
 
-        <FormField label="y:">
-          <Input value={selectedNode?.y}/>
-      </FormField>
+      <div className="flex gap-2">
+        <FormField label="x:">
+            <Input value={selectedNode?.x} className="!py-2 text-sm"/>
+        </FormField>
 
-       <FormField label="Type:">
-        <Select>
+          <FormField label="y:">
+            <Input value={selectedNode?.y} className="!py-2 text-sm"/>
+        </FormField>
+    </div>
+       <FormField label="Type:" className="text-sm">
+        <Select  className="!py-1 !px-2 text-sm !h-[38px]  ">
           {Object.entries(nodeConfig)
               .filter(([, config]) => config.selectable)
               .map(([key, config]) => (

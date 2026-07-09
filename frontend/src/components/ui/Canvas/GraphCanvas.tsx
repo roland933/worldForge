@@ -23,6 +23,7 @@ type GraphCanvasProps = {
     connections: Connection[];
     player?: Player;
     handleSelectedNode: (node: GraphNode) => void;
+    selectedNode?:GraphNode
 };
 
 
@@ -31,6 +32,7 @@ export function GraphCanvas({
     connections,
     player,
     handleSelectedNode,
+    selectedNode,
     children,
 }: GraphCanvasProps) {
     
@@ -54,7 +56,7 @@ export function GraphCanvas({
 
            {children}
 
-            <GraphViewPort handleSelectedNode={handleSelectedNode}  nodes={nodes} connections={connections} player={player}/>
+            <GraphViewPort selectedNode={selectedNode} handleSelectedNode={handleSelectedNode}  nodes={nodes} connections={connections} player={player}/>
 
         </section>
     );

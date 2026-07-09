@@ -5,13 +5,7 @@ export function Select({onChange,error,className="",children,...props}){
         <select onChange={onChange} 
                 className={`
                         ${FORM_STYLES.select}
-                        ${error
-
-                        ? "border-red-500"
-
-                        : "border-slate-700"
-
-                    } 
+                        ${error  ? "border-red-500" : "border-slate-700" } 
                         ${className}`
                 }
                 {...props}

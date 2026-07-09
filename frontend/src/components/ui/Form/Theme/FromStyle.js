@@ -40,11 +40,11 @@ export const FORM_STYLES = {
         w-full
         rounded-xl
         border
-      
+        px-4
+        
         border-white/10
                     bg-white/[0.02]
-        px-4
-        py-3
+       
         text-white
         outline-none
         transition

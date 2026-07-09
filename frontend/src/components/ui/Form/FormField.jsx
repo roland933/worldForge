@@ -15,6 +15,7 @@ export function FormField({label="",className="",error,children,...props}) {
                     text-sm
                     font-medium
                     text-slate-300
+                     
                  ">{label}  
           </label>
         )}
