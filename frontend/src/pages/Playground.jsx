@@ -7,6 +7,7 @@ import { GraphCanvas } from "../components/ui/Canvas/GraphCanvas";
 import { useState } from "react";
 import { mockConnections } from "../data/mockConnections";
 import { mockNodes } from "../data/mockNodes";
+import { ControlPanel } from "../components/playground/ControlPanel";
 
 
 export function PlaygroundPage() {
@@ -46,56 +47,25 @@ export function PlaygroundPage() {
 
                 {/* Controls */}
 
-                <Card className="col-span-3">
+                 <Card className="col-span-9 min-h-[700px]">
 
-                    <h2 className="text-lg font-semibold mb-6">
-                        Playground Controls
-                    </h2>
-
-                    <div className="space-y-4">
-
-                        <Button className="w-full">
-                            Generate Graph
-                        </Button>
-
-                        <Button
-                            className="w-full"
-                            variant={ButtonVariants.SECONDARY}
-                        >
-                            Spawn Player
-                        </Button>
-
-                        <Button
-                            className="w-full"
-                            onClick={movePalyer}
-                            variant={ButtonVariants.SECONDARY}
-                        >
-                            Move Player
-                        </Button>
-
-                        <Button
-                            className="w-full"
-                            onClick={reset}
-                            variant={ButtonVariants.SECONDARY}
-                        >
-                            Reset
-                        </Button>
-
-                    </div>
-
-                </Card>
-
-                {/* Preview */}
-
-                <Card className="col-span-9 min-h-[700px]">
-
-                    <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-700">
+                    <div className="flex h-full items-center justify-center rounded-lg">
 
                         <GraphCanvas connections={connections} player={player} nodes={nodes}  />
 
                     </div>
 
                 </Card>
+
+                <Card className="col-span-3">
+
+                    <ControlPanel currentNode={nodes} connections={connections}/>
+
+                </Card>
+
+                {/* Preview */}
+
+               
 
             </div>
 

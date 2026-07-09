@@ -1,0 +1,185 @@
+import { RotateCcw, Download, WandSparkles } from "lucide-react";
+import { useState,useEffect } from "react";
+import { KeyButton } from "./KeyButton";
+type ControlPanelProps = {
+    currentNode:[],
+    connections:[],
+}
+
+export function ControlPanel({currentNode,connections}:ControlPanelProps) {
+    const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
+
+    useEffect(() => {
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+            
+                    setPressedKey(prev => {
+
+                    const next = new Set(prev);
+
+                    next.add(e.code);
+
+                    return next;
+
+                });
+
+     };
+
+     const handleKeyUp = (e: KeyboardEvent) => {
+
+            setPressedKey(prev => {
+
+                const next = new Set(prev);
+
+                next.delete(e.code);
+
+                return next;
+
+            });
+
+    };
+
+      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener("keyup", handleKeyUp);
+
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("keyup", handleKeyUp);
+        };
+
+    },[]);
+
+
+
+    return (
+        <aside
+            className="
+                w-full
+                rounded-3xl
+                border border-white/10
+                bg-white/[0.04]
+                backdrop-blur-3xl
+                p-6
+                flex
+                flex-col
+                gap-8
+            "
+        >
+            {/* Controls */}
+
+            <section>
+                <h3 className="text-lg font-semibold text-white">
+                    Controls
+                </h3>
+
+                <p className="text-sm text-slate-400 mt-1">
+                    Use WASD to move the player.
+                </p>
+
+                <div className="mt-6 flex flex-col items-center gap-2">
+
+                    <KeyButton label="W" active={pressedKeys.has("KeyW")}/>
+
+                    <div className="flex gap-2">
+
+                      <KeyButton label="A" active={pressedKeys.has("KeyA")}/>
+
+                         <KeyButton label="S" active={pressedKeys.has("KeyS")}/>
+
+                        <KeyButton label="D" active={pressedKeys.has("KeyD")}/>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            {/* Information */}
+
+            <section>
+
+                <h3 className="text-lg font-semibold text-white">
+                    Information
+                </h3>
+
+                <div className="mt-4 space-y-3 text-sm">
+
+                    <InfoRow
+                        label="Current Node"
+                        value={currentNode.length}
+                    />
+
+                    <InfoRow
+                        label="Connections"
+                        value={connections.length}
+                    />
+
+                    <InfoRow
+                        label="Map Size"
+                        value="Medium"
+                    />
+
+                </div>
+
+            </section>
+
+            {/* Actions */}
+
+            <section className="space-y-3 mt-auto">
+
+                <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-violet-600 py-3 hover:bg-violet-500 transition">
+
+                    <WandSparkles size={18} />
+
+                    Generate
+
+                </button>
+
+                <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 py-3">
+
+                    <RotateCcw size={18} />
+
+                    Reset
+
+                </button>
+
+                <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 py-3">
+
+                    <Download size={18} />
+
+                    Export JSON
+
+                </button>
+
+            </section>
+
+        </aside>
+    );
+}
+
+function InfoRow({
+    label,
+    value,
+}: {
+    label: string;
+    value: string;
+}) {
+    return (
+        <div className="flex items-center justify-between">
+
+            <span className="text-slate-400">
+
+                {label}
+
+            </span>
+
+            <span className="text-white font-medium">
+
+                {value}
+
+            </span>
+
+        </div>
+    );
+}

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { GraphToolbar } from "../../playground/Graph/GraphToolbar";
+import { GraphViewPort } from "../../playground/Graph/GraphViewPort";
 
 type GraphNode = {
     id: number;
@@ -29,77 +31,26 @@ export function GraphCanvas({
     player,
 }: GraphCanvasProps) {
     
-    const currentNode = nodes.find( node => node.id === player?.currentNode);
-   
+    
+
     return (
-        <div className="relative w-full h-[700px] rounded-xl border border-slate-700 bg-slate-950 overflow-hidden">
+         <section
+            className="
+                rounded-3xl
+                overflow-hidden
+                border 
+                border-white/10
+                bg-white/[0.03]
+                backdrop-blur-3xl
+                w-full
+            "
+        >
 
-            {player &&  (
-                <div
-                   
-                    className="absolute w-10 h-10 rounded-full bg-indigo-500 border-2 border-white flex items-center justify-center text-sm text-white"
-                    style={{
-                        left: currentNode?.x ,
-                        top: currentNode?.y,
-                        transform: "translate(-50%, -120%)"
-                    }}
-                >
-                    P
-                </div>
-            )}
 
-            {/* Connections */}
+            <GraphToolbar />
 
-         <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
-            >
+            <GraphViewPort nodes={nodes} connections={connections} player={player}/>
 
-                {connections.map(connection => {
-
-                    const fromNode = nodes.find(
-                        node => node.id === connection.from
-                    );
-
-                    const toNode = nodes.find(
-                        node => node.id === connection.to
-                    );
-
-                    if (!fromNode || !toNode) {
-                        return null;
-                    }
-
-                    return (
-                        <line
-                            key={`${connection.from}-${connection.to}`}
-
-                            x1={fromNode.x}
-                            y1={fromNode.y}
-                            x2={toNode.x}
-                            y2={toNode.y}
-                            stroke="#64748b"
-                            strokeWidth={4}
-                        />
-                    );
-
-                })}
-
-            </svg>
-
-            {/* Nodes */}
-
-            {nodes.map(node => (
-                <div
-                    key={node.id}
-                    className="absolute w-10 h-10 rounded-full bg-indigo-500 border-2 border-white flex items-center justify-center text-sm text-white"
-                    style={{
-                        left: node.x -20,
-                        top: node.y - 20,
-                    }}
-                >
-                    {node.id}
-                </div>
-            ))}
-
-        </div>
+        </section>
     );
 }
