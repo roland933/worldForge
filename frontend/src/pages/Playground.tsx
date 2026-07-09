@@ -4,7 +4,7 @@ import  Button  from "../components/ui/Button/Button";
 import { ButtonVariants } from "../components/ui/Button/buttonVariants";
 import  PageHeader  from "../components/layout/PageHeader";
 import { GraphCanvas } from "../components/ui/Canvas/GraphCanvas";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { mockConnections } from "../data/mockConnections";
 import { mockNodes } from "../data/mockNodes";
 import { ControlPanel } from "../components/playground/Panel/ControlPanel";
@@ -20,6 +20,12 @@ export function PlaygroundPage() {
     | "placing-node"
     | "connecting"
     | "moving";
+    type GraphNode = {
+    id: number;
+    x: number;
+    y: number;
+    type: string;
+};
      const [nodes] = useState(mockNodes);
 
     const [connections] = useState(mockConnections);
@@ -30,15 +36,19 @@ export function PlaygroundPage() {
 
     const [editorMode, setEditorMode] = useState<EditorMode>("idle");
 
+   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
 
-    
-    
     const[toolbarButtonType,setToolbarButtonType] = useState<ToolbarButtonType>("controls");
 
     const handleOpenPanel = (type:ToolbarButtonType) => {
 
             setToolbarButtonType(type)
     }
+    const handleSelectedNode = (node:GraphNode) => {
+        
+        setSelectedNode(node)
+    }
+    
 
 
     return (
@@ -61,7 +71,11 @@ export function PlaygroundPage() {
 
                     <div className="flex h-full items-center justify-center rounded-lg">
 
-                        <GraphCanvas connections={connections} player={player} nodes={nodes}  >
+                        <GraphCanvas 
+                                connections={connections} 
+                                player={player} 
+                                nodes={nodes}
+                                handleSelectedNode={handleSelectedNode}  >
 
                             <GraphToolbar handleOpenPanel={handleOpenPanel} toolbarButtonType={toolbarButtonType}/>
 
@@ -78,7 +92,7 @@ export function PlaygroundPage() {
                          )}
 
                          {toolbarButtonType === "nodes" && (
-                            <NodePanel />  
+                            <NodePanel selectedNode={selectedNode}/>  
                          )}
 
 
