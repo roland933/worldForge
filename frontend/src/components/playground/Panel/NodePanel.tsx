@@ -6,7 +6,7 @@ export function NodePanel() {
 
   return (
   <Panel>
-    <PanelHeader title="Nodes"/>  
+    <PanelHeader title="Nodes" subtitle="Create and edit graph nodes."/>  
   </Panel>
   )
 }
