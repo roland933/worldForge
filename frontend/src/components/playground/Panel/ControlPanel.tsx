@@ -1,6 +1,8 @@
 import { RotateCcw, Download, WandSparkles } from "lucide-react";
 import { useState,useEffect } from "react";
-import { KeyButton } from "./KeyButton";
+import { KeyButton } from "../KeyButton";
+import { Panel } from "../../ui/Panel/Panel";
+import { PanelHeader } from "../../ui/Panel/PanelHeader";
 type ControlPanelProps = {
     currentNode:[],
     connections:[],
@@ -51,33 +53,17 @@ export function ControlPanel({currentNode,connections}:ControlPanelProps) {
     },[]);
 
 
-
     return (
-        <aside
-            className="
-                w-full
-                rounded-3xl
-                border border-white/10
-                bg-white/[0.04]
-                backdrop-blur-3xl
-                p-6
-                flex
-                flex-col
-                gap-8
-            "
-        >
-            {/* Controls */}
+        <Panel>
+            
+            <PanelHeader title="Controls" 
+                         subtitle="Use WASD to move the player."
+                         
+                         />
 
+            
             <section>
-                <h3 className="text-lg font-semibold text-white">
-                    Controls
-                </h3>
-
-                <p className="text-sm text-slate-400 mt-1">
-                    Use WASD to move the player.
-                </p>
-
-                <div className="mt-6 flex flex-col items-center gap-2">
+                 <div className="mt-2 flex flex-col items-center gap-2">
 
                     <KeyButton label="W" active={pressedKeys.has("KeyW")}/>
 
@@ -92,7 +78,6 @@ export function ControlPanel({currentNode,connections}:ControlPanelProps) {
                     </div>
 
                 </div>
-
             </section>
 
             {/* Information */}
@@ -132,7 +117,7 @@ export function ControlPanel({currentNode,connections}:ControlPanelProps) {
 
                     <WandSparkles size={18} />
 
-                    Generate
+                    Auto Generate
 
                 </button>
 
@@ -154,7 +139,12 @@ export function ControlPanel({currentNode,connections}:ControlPanelProps) {
 
             </section>
 
-        </aside>
+        </Panel>
+       
+           
+
+   
+
     );
 }
 

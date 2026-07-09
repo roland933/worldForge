@@ -1,7 +1,9 @@
 import { Grid3X3, Map, User, ZoomIn } from "lucide-react";
 import { ToolbarButton } from "./ToolbarButton";
 
-export function GraphToolbar() {
+export function GraphToolbar({toolbarButtonType,handleOpenPanel}) {
+   
+
 
     return (
 
@@ -10,10 +12,8 @@ export function GraphToolbar() {
                 flex
                 items-center
                 justify-between
-
                 px-6
                 py-4
-
                 border-b border-white/10
             "
         >
@@ -27,7 +27,7 @@ export function GraphToolbar() {
             
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
             
-                Live Preview
+                Graph Preview
             
             </div>
                     Playground Preview
@@ -41,20 +41,25 @@ export function GraphToolbar() {
 
             <div className="flex gap-2">
 
-                <ToolbarButton icon={<ZoomIn size={16}/>}>
-                    100%
+                 <ToolbarButton onClick={() => handleOpenPanel("controls")}  active={toolbarButtonType === "controls"} icon={<Grid3X3 size={16}/>}>
+                    Controls
+
                 </ToolbarButton>
 
-                <ToolbarButton icon={<Grid3X3 size={16}/>}>
-                    Grid
+                <ToolbarButton  onClick={() => handleOpenPanel("nodes")} active={toolbarButtonType === "nodes"} icon={<ZoomIn size={16}/>}>
+                    Nodes
                 </ToolbarButton>
 
-                <ToolbarButton icon={<Map size={16}/>}>
+                <ToolbarButton onClick={() => handleOpenPanel("background")}  active={toolbarButtonType === "background"} icon={<Grid3X3 size={16}/>}>
+                    Background
+                </ToolbarButton>
+
+                <ToolbarButton onClick={() => handleOpenPanel("connections")} active={toolbarButtonType === "connections"}  icon={<Map size={16}/>}>
                     Connections
                 </ToolbarButton>
 
-                <ToolbarButton icon={<User size={16}/>}>
-                    Player
+                <ToolbarButton onClick={() => handleOpenPanel("export")}  active={toolbarButtonType === "export"}    icon={<User size={16}/>}>
+                    Export
                 </ToolbarButton>
 
             </div>

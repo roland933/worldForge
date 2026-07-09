@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PlayerMarker } from "./PlayerMarker";
+import { nodeConfig } from "./Node/nodeConfig";
 
 type GraphNode = {
     id: number;
@@ -31,19 +32,19 @@ export function GraphViewPort({
 }: GraphCanvasProps) {
     
     const currentNode = nodes.find( node => node.id === player?.currentNode);
-   
+    
     return (
         <div className="
+                    viewport
                     relative
                     w-full 
-                    h-[600px] 
-                    rounded-xl 
-                    bg-gradient-to-br
-                    from-slate-900
-                    via-slate-950
-                    to-black 
-                    backdrop-blur-3xl 
-                    overflow-hidden">
+                    h-[600px]
+                    border 
+                    
+                  border-white/15
+                    backdrop-blur-xl 
+                    overflow-hidden"
+                      >
 
             {player &&  (
                <PlayerMarker label="You" x={currentNode.x} y={currentNode.y} />
@@ -77,9 +78,9 @@ export function GraphViewPort({
                             y1={fromNode.y}
                             x2={toNode.x}
                             y2={toNode.y}
-                            stroke="#818cf8"
+                            stroke="#8B5CF6"
                             opacity=".35"
-                            strokeWidth={4}
+                            strokeWidth={3}
                         />
                     );
 
@@ -89,24 +90,23 @@ export function GraphViewPort({
 
             {/* Nodes */}
 
-            {nodes.map(node => (
-                <div
+            {nodes.map(node => {
+              const config = nodeConfig[node.type];
+              
+             return   <div
                     key={node.id}
-                    className="
+                    className={`}
                     absolute 
                     w-11 
                     h-11 
                     rounded-full
-                    bg-violet-500 
-                    shadow-[0_0_25px_rgba(139,92,246,.35)]
-
-                     border-2 
-                     border-white/20 
+                    ${config.style}
                      flex 
                      items-center 
                      justify-center 
                      text-sm 
-                     text-white"
+                     text-white
+                    `}
                     style={{
                         left: node.x -20,
                         top: node.y - 20,
@@ -114,7 +114,7 @@ export function GraphViewPort({
                 >
                     {node.id}
                 </div>
-            ))}
+})}
 
         </div>
     );

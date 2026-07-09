@@ -12,8 +12,6 @@ return (
     style={{
         left: x,
         top:y - MARKER_OFFSET,
-         
-      
     }}
 >
     {/* Marker */}
@@ -22,7 +20,7 @@ return (
 <div className="flex flex-col items-center">
         <div
             className="
-                px-3
+                px-2
                 py-1
                
                 rounded-lg
