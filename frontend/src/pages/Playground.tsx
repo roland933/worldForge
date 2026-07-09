@@ -15,6 +15,11 @@ import { InspectorSidebar } from "../components/playground/InspectorSidebar";
 import { NodePanel } from "../components/playground/Panel/NodePanel";
 
 export function PlaygroundPage() {
+        type EditorMode =
+    | "idle"
+    | "placing-node"
+    | "connecting"
+    | "moving";
      const [nodes] = useState(mockNodes);
 
     const [connections] = useState(mockConnections);
@@ -22,6 +27,10 @@ export function PlaygroundPage() {
     const [player,setPlayer] = useState({
         currentNode: 1
     });
+
+    const [editorMode, setEditorMode] = useState<EditorMode>("idle");
+
+
     
     
     const[toolbarButtonType,setToolbarButtonType] = useState<ToolbarButtonType>("controls");
