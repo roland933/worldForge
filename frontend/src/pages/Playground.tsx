@@ -13,22 +13,20 @@ import {ToolbarButtonType} from "../components/playground/Graph/Toolbar/ToolbarB
 import { GraphToolbar } from "../components/playground/Graph/GraphToolbar";
 import { InspectorSidebar } from "../components/playground/InspectorSidebar";
 import { NodePanel } from "../components/playground/Panel/NodePanel";
-
+import { GraphNode } from "../components/shared/types/Graph/GraphNode";
+import { NodeType } from "../components/playground/Graph/Node/nodeConfig";
+import { SearchSlash } from "lucide-react";
+import { ConnectionPanel } from "../components/playground/Panel/ConnectionPanel";
 export function PlaygroundPage() {
         type EditorMode =
     | "idle"
     | "placing-node"
     | "connecting"
     | "moving";
-    type GraphNode = {
-    id: number;
-    x: number;
-    y: number;
-    type: string;
-};
-     const [nodes] = useState(mockNodes);
 
-    const [connections] = useState(mockConnections);
+     const [nodes,setNodes] = useState(mockNodes);
+
+    const [connections,setConnections] = useState(mockConnections);
  
     const [player,setPlayer] = useState({
         currentNode: 1
@@ -36,19 +34,78 @@ export function PlaygroundPage() {
 
     const [editorMode, setEditorMode] = useState<EditorMode>("idle");
 
-   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
 
-    const[toolbarButtonType,setToolbarButtonType] = useState<ToolbarButtonType>("controls");
+   const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
+   const [selectedConnectionId, setSelectedConnectionId] = useState<number | null>(null);
+
+
+   const selectedNode =  nodes.find(n => n.id === selectedNodeId);
+   const selectedConnection = connections.find(c => c.id === selectedConnectionId);
+
+
+   const [nodeType, setNodeType] = useState<NodeType>("node");
+
+   const[toolbarButtonType,setToolbarButtonType] = useState<ToolbarButtonType>("controls");
 
     const handleOpenPanel = (type:ToolbarButtonType) => {
-
             setToolbarButtonType(type)
     }
-    const handleSelectedNode = (node:GraphNode) => {
-        
-        setSelectedNode(node)
+
+    const handleSelectedNode = (id:number) => {
+          
+
+          setSelectedNodeId(id);
+
+          const node = nodes.find(n => n.id === id);
+
+            if (node) {
+                setNodeType(node.type as NodeType);
+            }
+
+          
     }
+
+    const handleSelectedConnection = (id:number) => {
+       setSelectedNodeId(null);
+        setSelectedConnectionId(id);
+       
+    }
+
+    const handleNodeTypeChange = (type: string) => {
+        if (!selectedNode) return;
     
+         setNodeType(type)   
+    };
+    
+    const handleAddNode = () => {
+       
+        if (!selectedNode) return;
+         
+  
+            setNodes(prev =>
+                prev.map(node =>
+                    node.id === selectedNode.id
+                        ? {
+                            ...node,
+                            type: nodeType
+                        }
+                        : node
+                )
+            );
+    }
+
+     const handleDeleteNode = () => {
+         if (!selectedNode) return;
+
+          setNodes(prev =>
+            prev.filter(node => node.id !== selectedNode.id)
+        );
+
+        setNodeType("empty")
+        setSelectedNodeId(null);
+               
+    }
+
 
 
     return (
@@ -75,8 +132,12 @@ export function PlaygroundPage() {
                                 connections={connections} 
                                 player={player} 
                                 nodes={nodes}
-                                selectedNode={selectedNode}
-                                handleSelectedNode={handleSelectedNode}  >
+                                selectedNode={selectedNodeId}
+                                selectedConnection={selectedConnectionId}
+                                handleSelectedNode={handleSelectedNode}  
+                                handleSelectedConnection={handleSelectedConnection}
+                                
+                                >
 
                             <GraphToolbar handleOpenPanel={handleOpenPanel} toolbarButtonType={toolbarButtonType}/>
 
@@ -93,7 +154,20 @@ export function PlaygroundPage() {
                          )}
 
                          {toolbarButtonType === "nodes" && (
-                            <NodePanel selectedNode={selectedNode}/>  
+                            <NodePanel selectedNode={selectedNode} 
+                                       onAdd={handleAddNode}
+                                       nodeType={nodeType} 
+                                       onDelete={handleDeleteNode} 
+                                       handleNodeTypeChange={handleNodeTypeChange}
+                                       />  
+                         )}
+
+                         {toolbarButtonType === "connections" && (
+                            <ConnectionPanel 
+                                       onAdd={handleAddNode}
+                                       selectedConnection={selectedConnection}
+                                       onDelete={handleDeleteNode}  
+                                       />  
                          )}
 
 

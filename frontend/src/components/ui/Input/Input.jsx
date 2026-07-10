@@ -18,8 +18,7 @@ export default function Input({
                     w-full
                     rounded-xl
                     border
-                    border-[#2B3245]
-                    bg-[#1A2030]
+                    
                     px-4
                     py-3
                     text-white

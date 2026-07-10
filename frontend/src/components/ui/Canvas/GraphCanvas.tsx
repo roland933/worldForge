@@ -1,42 +1,19 @@
-import { useState } from "react";
-import { GraphToolbar } from "../../playground/Graph/GraphToolbar";
+
 import { GraphViewPort } from "../../playground/Graph/GraphViewPort";
-
-type GraphNode = {
-    id: number;
-    x: number;
-    y: number;
-    type: string;
-};
-
-type Connection = {
-    from: number;
-    to: number;
-};
-
-type Player = {
-    currentNode: number;
-};
-
-type GraphCanvasProps = {
-    nodes: GraphNode[];
-    connections: Connection[];
-    player?: Player;
-    handleSelectedNode: (node: GraphNode) => void;
-    selectedNode?:GraphNode
-};
-
+import { GraphCanvasProps } from "./GraphCanvasProps";
 
 export function GraphCanvas({
     nodes,
     connections,
     player,
     handleSelectedNode,
+    handleSelectedConnection,
     selectedNode,
+    selectedConnection,
     children,
 }: GraphCanvasProps) {
     
-    
+
 
     return (
          <section
@@ -56,7 +33,13 @@ export function GraphCanvas({
 
            {children}
 
-            <GraphViewPort selectedNode={selectedNode} handleSelectedNode={handleSelectedNode}  nodes={nodes} connections={connections} player={player}/>
+            <GraphViewPort selectedNode={selectedNode} 
+                           handleSelectedNode={handleSelectedNode}
+                           handleSelectedConnection={handleSelectedConnection}  
+                           selectedConnection={selectedConnection}
+                           nodes={nodes} 
+                           connections={connections} 
+                           player={player}/>
 
         </section>
     );

@@ -1,16 +1,16 @@
 import { buttonConfig } from "./buttonConfig";
 import { buttonStyles } from "./ButtonStyles";
+import { ButtonSizes } from "./buttonVariants";
 export default function Button({
     children,
     onClick,
     variant = buttonConfig.defaultVariant,
+    size= buttonConfig.defaultSize,
     className = "",
     type="button",
     icon: Icon,
     ...props
 }) {
-
-
 
     return (
 
@@ -18,13 +18,12 @@ export default function Button({
             onClick={onClick}
             type={type}
             className={`
+                ${buttonStyles[size]}
                 inline-flex
                 items-center
                 justify-center
                 gap-2
-                rounded-xl
-                px-5
-                py-3
+              
                 hover:cursor-pointer
                 font-medium
                 transition

@@ -50,13 +50,15 @@ export function GraphToolbar({toolbarButtonType,handleOpenPanel}) {
                     Nodes
                 </ToolbarButton>
 
+                 <ToolbarButton onClick={() => handleOpenPanel("connections")} active={toolbarButtonType === "connections"}  icon={<Map size={16}/>}>
+                    Connections
+                </ToolbarButton>
+
                 <ToolbarButton onClick={() => handleOpenPanel("background")}  active={toolbarButtonType === "background"} icon={<Grid3X3 size={16}/>}>
                     Background
                 </ToolbarButton>
 
-                <ToolbarButton onClick={() => handleOpenPanel("connections")} active={toolbarButtonType === "connections"}  icon={<Map size={16}/>}>
-                    Connections
-                </ToolbarButton>
+               
 
                 <ToolbarButton onClick={() => handleOpenPanel("export")}  active={toolbarButtonType === "export"}    icon={<User size={16}/>}>
                     Export

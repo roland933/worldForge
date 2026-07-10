@@ -1,38 +1,17 @@
 import { useState } from "react";
 import { PlayerMarker } from "./PlayerMarker";
 import { nodeConfig } from "./Node/nodeConfig";
-
-type GraphNode = {
-    id: number;
-    x: number;
-    y: number;
-    type: string;
-};
-
-type Connection = {
-    from: number;
-    to: number;
-};
-
-type Player = {
-    currentNode: number;
-};
-
-type GraphCanvasProps = {
-    nodes: GraphNode[];
-    connections: Connection[];
-    player?: Player;
-    handleSelectedNode: (node: GraphNode) => void;
-     selectedNode:GraphNode
-};
-
-
+import {connectionConfig} from "./Connection/ConnectionConfig";
+import { GraphCanvasProps } from "../../ui/Canvas/GraphCanvasProps";
+import { Fragment } from "react";
 export function GraphViewPort({
     nodes,
     connections,
     player,
     selectedNode,
-    handleSelectedNode
+    selectedConnection,
+    handleSelectedNode,
+    handleSelectedConnection
 }: GraphCanvasProps) {
     
     const currentNode = nodes.find( node => node.id === player?.currentNode);
@@ -57,11 +36,12 @@ export function GraphViewPort({
             {/* Connections */}
 
          <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
+                className="absolute inset-0 w-full h-full"
             >
 
                 {connections.map(connection => {
-
+                    const config = connectionConfig[connection.type]
+                    const isSelected  = selectedConnection === connection.id;
                     const fromNode = nodes.find(
                         node => node.id === connection.from
                     );
@@ -75,17 +55,33 @@ export function GraphViewPort({
                     }
 
                     return (
-                        <line
-                            key={`${connection.from}-${connection.to}`}
+                         <Fragment key={connection.id}>
 
+                             <line
+                                x1={fromNode.x}
+                                y1={fromNode.y}
+                                x2={toNode.x}
+                                y2={toNode.y}
+                                stroke="transparent"
+                                strokeWidth={20}
+                                onClick={() => handleSelectedConnection(connection.id)}
+                            />
+
+                        <line
+                           
+                            key={`${connection.from}-${connection.to}`}
+                            
                             x1={fromNode.x}
                             y1={fromNode.y}
                             x2={toNode.x}
                             y2={toNode.y}
-                            stroke="#8B5CF6"
-                            opacity=".35"
-                            strokeWidth={3}
+                            stroke={isSelected ? '#000' : config.stroke}
+                            strokeDasharray={config.dash}
+                            strokeOpacity={config.opacity}
+                            strokeWidth={config.width}
                         />
+                        </Fragment>
+                        
                     );
 
                 })}
@@ -98,7 +94,7 @@ export function GraphViewPort({
               const config = nodeConfig[node.type];
               
              return   <div
-                    onClick={() => handleSelectedNode(node) }
+                    onClick={() => handleSelectedNode(node.id) }
                     key={node.id}
                     className={`
                     absolute 
@@ -106,7 +102,7 @@ export function GraphViewPort({
                     h-11 
                     rounded-full
                     cursor-pointer
-                    ${selectedNode?.id === node.id ? 'shadow-[0_0_25px_rgba(139,92,246,.75)] !border-violet-400' : ''}
+                    ${selectedNode === node.id ? 'shadow-[0_0_25px_rgba(139,92,246,.75)] !border-violet-400' : ''}
                     ${config.style}
                      flex 
                      items-center 

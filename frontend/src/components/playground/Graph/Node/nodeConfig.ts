@@ -48,10 +48,10 @@ export const nodeConfig: Record<NodeType, NodeConfig> = {
     },
 
     empty: {
-        label: "",
+        label: "Empty",
         color: "",
         icon: "",
-        style: "bg-white/10 border-2 border-white/20 shadow-[0_0_25px_rgba(139,92,246,.35)]",
+        style: "bg-white/15 border-2 border-white/10 shadow-[0_0_25px_rgba(139,92,246,.35)] backdrop-blur-3xl",
         selectable:false
     },
 }

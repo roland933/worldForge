@@ -13,10 +13,10 @@ export function Panel({className,children}:PanelProps) {
                 border border-white/10
                 bg-white/[0.04]
                 backdrop-blur-3xl
-                p-4
+                p-5
                 flex
                 flex-col
-                gap-8
+                gap-4
             "
         >
             {children}

@@ -1,4 +1,4 @@
-import { ButtonVariants } from "./buttonVariants";
+import { ButtonSizes, ButtonVariants } from "./buttonVariants";
 
 export const buttonStyles = {
         [ButtonVariants.PRIMARY]:
@@ -12,4 +12,7 @@ export const buttonStyles = {
 
          [ButtonVariants.OUTLINE]:
             "border border-[#2F3547] hover:bg-[#1A2030] text-white",
+
+        [ButtonSizes.SM]: "px-0 py-2 rounded-xl",
+        [ButtonSizes.MD]: "px-5 py-3   rounded-xl"          
     };
