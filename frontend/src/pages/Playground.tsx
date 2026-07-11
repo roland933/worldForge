@@ -5,7 +5,7 @@ import  PageHeader  from "../components/layout/PageHeader";
 import { GraphCanvas } from "../components/ui/Canvas/GraphCanvas";
 import { useEffect, useState } from "react";
 import { mockConnections } from "../data/mockConnections.ts";
-import { mockNodes } from "../data/mockNodes";
+import { mockNodes } from "../data/mockNodes.ts";
 import { ControlPanel } from "../components/playground/Panel/ControlPanel";
 import { GenerateForgeModal } from "../components/game/GenerateForgeModal/GenerateForgeModal";
 import {ToolbarButtonType} from "../components/playground/Graph/Toolbar/ToolbarButtonType";

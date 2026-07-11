@@ -1,4 +1,6 @@
-export const mockNodes = [
+import { Node } from "../components/shared/types/Node/Node";
+
+export const mockNodes:Node[] = [
     {
         id: 1,
         x: 150,
