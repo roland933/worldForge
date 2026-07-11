@@ -5,6 +5,7 @@ export type Connection = {
     from:number;
     to:number;
     type:ConnectionType,
+    bidirectional:boolean
 
     
 };

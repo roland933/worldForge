@@ -1,11 +1,10 @@
 import  DashboardLayout  from "../layouts/DashboardLayout";
-import { Card } from "../components/ui/Card/Card";
 import  Button  from "../components/ui/Button/Button";
 import { ButtonVariants } from "../components/ui/Button/buttonVariants";
 import  PageHeader  from "../components/layout/PageHeader";
 import { GraphCanvas } from "../components/ui/Canvas/GraphCanvas";
 import { useEffect, useState } from "react";
-import { mockConnections } from "../data/mockConnections";
+import { mockConnections } from "../data/mockConnections.ts";
 import { mockNodes } from "../data/mockNodes";
 import { ControlPanel } from "../components/playground/Panel/ControlPanel";
 import { GenerateForgeModal } from "../components/game/GenerateForgeModal/GenerateForgeModal";
@@ -13,10 +12,10 @@ import {ToolbarButtonType} from "../components/playground/Graph/Toolbar/ToolbarB
 import { GraphToolbar } from "../components/playground/Graph/GraphToolbar";
 import { InspectorSidebar } from "../components/playground/InspectorSidebar";
 import { NodePanel } from "../components/playground/Panel/NodePanel";
-import { GraphNode } from "../components/shared/types/Graph/GraphNode";
 import { NodeType } from "../components/playground/Graph/Node/nodeConfig";
 import { SearchSlash } from "lucide-react";
 import { ConnectionPanel } from "../components/playground/Panel/ConnectionPanel";
+
 export function PlaygroundPage() {
         type EditorMode =
     | "idle"
@@ -106,6 +105,52 @@ export function PlaygroundPage() {
                
     }
 
+     const handleDeleteConnection = () => {
+         if (!selectedConnection) return;
+
+         if(selectedConnection.type === "empty") {
+            alert("This connection can not deleted")
+            return;
+         }
+      
+         setConnections(prev =>
+                prev.map(connection =>
+                    connection.id === selectedConnection.id
+                        ? {
+                            ...connection,
+                            type: "empty"
+                        }
+                        : connection
+                )
+            );
+
+             setSelectedConnectionId(null);
+       
+               
+    }
+
+     const handleAddConnection = () => {
+         if (!selectedConnection) return;
+
+    
+      
+         setConnections(prev =>
+                prev.map(connection =>
+                    connection.id === selectedConnection.id
+                        ? {
+                            ...connection,
+                            type: "normal"
+                        }
+                        : connection
+                )
+            );
+
+
+            
+       
+               
+    }
+
 
 
     return (
@@ -164,9 +209,10 @@ export function PlaygroundPage() {
 
                          {toolbarButtonType === "connections" && (
                             <ConnectionPanel 
-                                       onAdd={handleAddNode}
+                                       onAdd={handleAddConnection}
                                        selectedConnection={selectedConnection}
-                                       onDelete={handleDeleteNode}  
+                                       onDelete={handleDeleteConnection}
+                                         
                                        />  
                          )}
 

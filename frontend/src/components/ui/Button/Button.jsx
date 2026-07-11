@@ -25,6 +25,7 @@ export default function Button({
                 gap-2
               
                 hover:cursor-pointer
+                disabled:cursor-not-allowed
                 font-medium
                 transition
                 duration-200

@@ -8,7 +8,7 @@ export const buttonStyles = {
             "bg-white/5 border border-white/10 hover:bg-violet-500/30 text-violet-100",
 
         [ButtonVariants.DANGER]:
-            "bg-red-600 hover:bg-red-500 text-white",
+            "bg-red-400/30 hover:bg-red-400/50 text-white  border border-red-400/40",
 
          [ButtonVariants.OUTLINE]:
             "border border-[#2F3547] hover:bg-[#1A2030] text-white",

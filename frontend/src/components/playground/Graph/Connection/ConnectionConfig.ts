@@ -1,16 +1,17 @@
-export const connectionConfig = {
+import { ConnectionType } from "../../../shared/types/Graph/ConntionType";
+
+type Config = {
+    stroke: string;
+    width:number,
+    opacity?:string,
+    dash?:string,
+};
+
+export const connectionConfig:Record<ConnectionType,Config> = {
     normal: {
         stroke: "#8B5CF6",
         width: 4,
         opacity: ".35"
-    },
-
-    locked: {
-        stroke: "#EF4444"
-    },
-
-    secret: {
-        stroke: "#10B981"
     },
 
     empty: {

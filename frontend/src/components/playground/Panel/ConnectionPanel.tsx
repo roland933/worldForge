@@ -27,8 +27,9 @@ export function ConnectionPanel({selectedConnection,onAdd,onDelete}:ConnectionPa
     <PanelHeader title="Connections" subtitle="Create and edit connection."/>
 
      {selectedConnection && (
-      <div className="text-sm text-violet-200">
-       Id: <b>#{selectedConnection?.id}</b>
+      <div className="text-sm text-violet-200 flex gap-2">
+        Id: <b>#{selectedConnection?.id}</b>
+        type: <b>{selectedConnection?.type === "empty" ? 'not active' : 'active'}</b>
      </div>
      )} 
      
@@ -50,7 +51,7 @@ export function ConnectionPanel({selectedConnection,onAdd,onDelete}:ConnectionPa
      <PanelActions>
 
         <PanelAddButton onAdd={onAdd}  title="Place connection"/>
-        <PanelDeleteButton title="Delete connection" onDelete={onDelete} disabled={!selectedConnection}  />
+        <PanelDeleteButton title="Delete connection" onDelete={onDelete} disabled={!selectedConnection || selectedConnection.type === "empty"}  />
 
       </PanelActions>     
    

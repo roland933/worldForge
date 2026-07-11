@@ -50,18 +50,33 @@ export function GraphViewPort({
                         node => node.id === connection.to
                     );
 
+                    
                     if (!fromNode || !toNode) {
                         return null;
                     }
+                    const radius = 20
+
+                    const dx = toNode.x - fromNode.x;
+                    const dy = toNode.y - fromNode.y;
+                    const length = Math.sqrt(dx * dx + dy * dy);
+
+                    const ux = dx / length;
+                    const uy = dy / length;
+
+                    const startX = fromNode.x + ux * radius;
+                    const startY = fromNode.y + uy * radius;
+
+                    const endX = toNode.x - ux * radius;
+                    const endY = toNode.y - uy * radius;
 
                     return (
                          <Fragment key={connection.id}>
 
                              <line
-                                x1={fromNode.x}
-                                y1={fromNode.y}
-                                x2={toNode.x}
-                                y2={toNode.y}
+                                 x1={startX}
+                                y1={startY}
+                                x2={endX}
+                                y2={endY}
                                 stroke="transparent"
                                 strokeWidth={20}
                                 onClick={() => handleSelectedConnection(connection.id)}
@@ -71,11 +86,11 @@ export function GraphViewPort({
                            
                             key={`${connection.from}-${connection.to}`}
                             
-                            x1={fromNode.x}
-                            y1={fromNode.y}
-                            x2={toNode.x}
-                            y2={toNode.y}
-                            stroke={isSelected ? '#000' : config.stroke}
+                            x1={startX}
+                            y1={startY}
+                            x2={endX}
+                            y2={endY}
+                            stroke={isSelected ? 'rgba(255,255,255,0.5)' : config.stroke}
                             strokeDasharray={config.dash}
                             strokeOpacity={config.opacity}
                             strokeWidth={config.width}
