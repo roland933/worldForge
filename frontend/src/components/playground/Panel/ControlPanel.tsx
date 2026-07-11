@@ -1,57 +1,15 @@
-import { RotateCcw, Download, WandSparkles } from "lucide-react";
-import { useState,useEffect } from "react";
+import { RotateCcw, Download, WandSparkles } from "lucide-react";;
 import { KeyButton } from "../KeyButton";
 import { Panel } from "../../ui/Panel/Panel";
 import { PanelHeader } from "../../ui/Panel/PanelHeader";
 type ControlPanelProps = {
     currentNode:[],
     connections:[],
+    pressedKeys:Set<string>
 }
 
-export function ControlPanel({currentNode,connections}:ControlPanelProps) {
-    const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
-
-    useEffect(() => {
-
-      const handleKeyDown = (e: KeyboardEvent) => {
-            
-                    setPressedKey(prev => {
-
-                    const next = new Set(prev);
-
-                    next.add(e.code);
-
-                    return next;
-
-                });
-
-     };
-
-     const handleKeyUp = (e: KeyboardEvent) => {
-
-            setPressedKey(prev => {
-
-                const next = new Set(prev);
-
-                next.delete(e.code);
-
-                return next;
-
-            });
-
-    };
-
-      window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("keyup", handleKeyUp);
-
-
-        return () => {
-            window.removeEventListener("keydown", handleKeyDown);
-            window.removeEventListener("keyup", handleKeyUp);
-        };
-
-    },[]);
-
+export function ControlPanel({currentNode,connections,pressedKeys}:ControlPanelProps) {
+   
 
     return (
         <Panel>

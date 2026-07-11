@@ -24,22 +24,97 @@ export function PlaygroundPage() {
     | "moving";
 
      const [nodes,setNodes] = useState(mockNodes);
+     const [player,setPlayer] = useState({currentNode: 1  });
+     const [connections,setConnections] = useState(mockConnections);
+     const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
+     const [selectedConnectionId, setSelectedConnectionId] = useState<number | null>(null);
 
-    const [connections,setConnections] = useState(mockConnections);
- 
-    const [player,setPlayer] = useState({
-        currentNode: 1
+
+    const selectedNode =  nodes.find(n => n.id === selectedNodeId);
+    const selectedConnection = connections.find(c => c.id === selectedConnectionId);
+const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
+
+const movePlayer = (direction: string) => {
+
+     setPlayer(prev => {
+       
+        const availableConnections = connections.filter(
+            c =>
+                  c.from === prev.currentNode &&
+                c.type === "normal"
+        );
+
+        
+
+        if (!availableConnections.length) {
+            return prev;
+        }
+
+        return {
+            currentNode: availableConnections[0].to
+        };
+
     });
+
+}
+
+        useEffect(() => {
+     
+           const handleKeyDown = (e: KeyboardEvent) => {
+                 
+                         setPressedKey(prev => {
+     
+                         const next = new Set(prev);
+     
+                         next.add(e.code);
+     
+                         return next;
+     
+                     });
+
+                      if (e.code === "KeyS") {
+                          movePlayer("down");
+                        }
+                    
+     
+          };
+     
+          const handleKeyUp = (e: KeyboardEvent) => {
+     
+                 setPressedKey(prev => {
+     
+                     const next = new Set(prev);
+     
+                     next.delete(e.code);
+     
+                     return next;
+     
+                 });
+     
+         };
+     
+           window.addEventListener("keydown", handleKeyDown);
+           window.addEventListener("keyup", handleKeyUp);
+     
+     
+             return () => {
+                 window.removeEventListener("keydown", handleKeyDown);
+                 window.removeEventListener("keyup", handleKeyUp);
+             };
+     
+         },[player,connections]);
+
+ 
+
+
+    
+ 
+ 
 
     const [editorMode, setEditorMode] = useState<EditorMode>("idle");
 
 
-   const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
-   const [selectedConnectionId, setSelectedConnectionId] = useState<number | null>(null);
 
-
-   const selectedNode =  nodes.find(n => n.id === selectedNodeId);
-   const selectedConnection = connections.find(c => c.id === selectedConnectionId);
 
 
    const [nodeType, setNodeType] = useState<NodeType>("node");
@@ -193,7 +268,12 @@ export function PlaygroundPage() {
 
                     <InspectorSidebar>
                         {toolbarButtonType === "controls" && (
-                         <ControlPanel currentNode={nodes} connections={connections}/>
+                         <ControlPanel currentNode={nodes} 
+                                      connections={connections} 
+                                      pressedKeys={pressedKeys}
+                          
+                                      
+                                      />
                          )}
 
                          {toolbarButtonType === "nodes" && (
