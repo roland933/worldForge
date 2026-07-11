@@ -34,17 +34,35 @@ export function PlaygroundPage() {
     const selectedConnection = connections.find(c => c.id === selectedConnectionId);
 const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
 
+const getNode = (nodeId:number) => {
+      return nodes.find(n => n.id === nodeId);
+}
+
+const getAvailableConnections = (nodeId:number) => {
+
+return connections.filter(c =>
+        c.type === "normal" &&
+        (c.from === nodeId || c.to === nodeId)
+    );
+        
+}
+
+const getTargetNodes = (nodeId:number) => {
+return getAvailableConnections(nodeId).map(c => getNode(c.to))  .filter(Boolean);
+
+}
+
+
+
 const movePlayer = (direction: string) => {
 
      setPlayer(prev => {
        
-        const availableConnections = connections.filter(
-            c =>
-                  c.from === prev.currentNode &&
-                c.type === "normal"
-        );
+        const availableConnections = getAvailableConnections(prev.currentNode);
 
-        
+        const targetNodes = getTargetNodes(prev.currentNode);
+
+        console.log(targetNodes);
 
         if (!availableConnections.length) {
             return prev;
