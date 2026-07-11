@@ -71,27 +71,25 @@ export function PlaygroundPage() {
     }
 
     const handleNodeTypeChange = (type: string) => {
-        if (!selectedNode) return;
-    
-         setNodeType(type)   
-    };
-    
-    const handleAddNode = () => {
        
         if (!selectedNode) return;
+
+         setNodeType(type)
          
-  
-            setNodes(prev =>
+          setNodes(prev =>
                 prev.map(node =>
                     node.id === selectedNode.id
                         ? {
                             ...node,
-                            type: nodeType
+                            type: type
                         }
                         : node
                 )
             );
+       
     }
+
+
 
      const handleDeleteNode = () => {
          if (!selectedNode) return;
@@ -200,7 +198,7 @@ export function PlaygroundPage() {
 
                          {toolbarButtonType === "nodes" && (
                             <NodePanel selectedNode={selectedNode} 
-                                       onAdd={handleAddNode}
+                                      
                                        nodeType={nodeType} 
                                        onDelete={handleDeleteNode} 
                                        handleNodeTypeChange={handleNodeTypeChange}

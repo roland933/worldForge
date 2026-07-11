@@ -11,16 +11,15 @@ import { GraphNode } from "../../shared/types/Graph/GraphNode";
 import { DeletePanelButton, PanelDeleteButton } from "../../shared/panel/actions/PanelDeleteButton";
 import { PanelAddButton } from "../../shared/panel/actions/PanelAddButton";
 import { PanelActions } from "../../ui/Panel/PanelActions";
+import { NodeTypeButton } from "../NodeTypeButton";
 
 type NodePanelProps={
   selectedNode?:GraphNode,
-  onAdd:(selectedType:string) => void,
   onDelete?:() => void,
   handleNodeTypeChange:(type:string) => void,
-  nodeType:NodeType 
 }
 
-export function NodePanel({selectedNode,onAdd,onDelete,handleNodeTypeChange,nodeType}:NodePanelProps) {
+export function NodePanel({selectedNode,onDelete,handleNodeTypeChange}:NodePanelProps) {
 
 
   return (
@@ -28,8 +27,9 @@ export function NodePanel({selectedNode,onAdd,onDelete,handleNodeTypeChange,node
     <PanelHeader title="Nodes" subtitle="Create and edit graph nodes."/>
 
      {selectedNode && (
-      <div className="text-sm text-violet-200">
-       Id: <b>#{selectedNode?.id}</b>
+      <div className="text-sm text-violet-200 flex gap-2">
+       id: <b>#{selectedNode?.id}</b>
+       type: <b>{selectedNode?.type}</b>
      </div>
      )} 
      
@@ -45,23 +45,22 @@ export function NodePanel({selectedNode,onAdd,onDelete,handleNodeTypeChange,node
             <Input value={selectedNode?.y ?? ""} className="!py-2 text-sm !h-[38px]" disabled={!selectedNode}/>
         </FormField>
     </div>
-       <FormField label="Type:" className="text-sm">
-        <Select  className="!py-1 !px-2 text-sm !h-[38px]" disabled={!selectedNode} value={nodeType} onChange={(e) => handleNodeTypeChange(e.target.value as NodeType)}>
-           
-          {Object.entries(nodeConfig)
+       
+    </Form>
+
+    <div className="flex gap-2">
+
+         {Object.entries(nodeConfig)
               
               .map(([key, config]) => (
-                  <option key={key} value={key}>
-                      {config.label}
-                  </option>
+                <NodeTypeButton  type={key as NodeType} label={config.label} onClick={() => handleNodeTypeChange(key as NodeType)}/>
+           
           ))}
-          </Select>
-      </FormField>
-    </Form>
+          </div>
 
      <PanelActions>
 
-        <PanelAddButton onAdd={onAdd}  title="Place node"/>
+      
         <PanelDeleteButton title="Delete node" onDelete={onDelete} disabled={!selectedNode}  />
 
       </PanelActions>     
