@@ -1,1 +1,1 @@
-export type BackgroundType = "forest"|"dungeon"|"desert"|"temple"
+export type BackgroundType = "forest"|"dungeon"|"desert"|"temple"|"snow"
