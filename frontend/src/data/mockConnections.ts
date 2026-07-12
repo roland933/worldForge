@@ -7,7 +7,12 @@ export const mockConnections: Connection[] = [
         from: 1,
         to: 3,
         type: "normal",
-        bidirectional: true
+        bidirectional: true,
+      
+        directions:{
+            from:"right",
+            to:"left"
+        }
     },
 
     {
@@ -15,7 +20,12 @@ export const mockConnections: Connection[] = [
         from: 3,
         to: 2,
         type: "normal",
-        bidirectional: true
+        bidirectional: true,
+      
+         directions:{
+            from:"up",
+            to:"down"
+        }
     },
 
     {
@@ -23,7 +33,12 @@ export const mockConnections: Connection[] = [
         from: 3,
         to: 4,
         type: "normal",
-        bidirectional: true
+        bidirectional: true,
+        directions:{
+            from:"down",
+            to:"up"
+        }
+      
     },
 
     {
@@ -31,15 +46,25 @@ export const mockConnections: Connection[] = [
         from: 3,
         to: 5,
         type: "normal",
-        bidirectional: true
+        bidirectional: true,
+         directions:{
+            from:"right",
+            to:"left"
+        }
+       
     },
 
     {
         id: 5,
         from: 5,
         to: 6,
-        type: "empty",
-        bidirectional: true
+        type: "normal",
+        bidirectional: true,
+        directions:{
+            from:"up",
+            to:"down"
+        }
+      
     },
 
     {
@@ -47,7 +72,12 @@ export const mockConnections: Connection[] = [
         from: 5,
         to: 7,
         type: "normal",
-        bidirectional: true
+        bidirectional: true,
+        directions:{
+            from:"right",
+            to:"left"
+        }
+        
     },
 
     {
@@ -55,7 +85,12 @@ export const mockConnections: Connection[] = [
         from: 5,
         to: 8,
         type: "empty",
-        bidirectional: true
+        bidirectional: true,
+        directions:{
+            from:"down",
+            to:"up"
+        }
+       
     },
 
     {
@@ -63,7 +98,12 @@ export const mockConnections: Connection[] = [
         from: 7,
         to: 9,
         type: "normal",
-        bidirectional: true
+        bidirectional: true,
+           directions:{
+            from:"right",
+            to:"left"
+        }
+       
     }
 
 ];

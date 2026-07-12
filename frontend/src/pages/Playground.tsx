@@ -15,6 +15,7 @@ import { NodePanel } from "../components/playground/Panel/NodePanel";
 import { NodeType } from "../components/playground/Graph/Node/nodeConfig";
 import { SearchSlash } from "lucide-react";
 import { ConnectionPanel } from "../components/playground/Panel/ConnectionPanel";
+import { Direction } from "../components/shared/types/Direction.ts";
 
 export function PlaygroundPage() {
         type EditorMode =
@@ -23,58 +24,61 @@ export function PlaygroundPage() {
     | "connecting"
     | "moving";
 
+     
+    
+
      const [nodes,setNodes] = useState(mockNodes);
      const [player,setPlayer] = useState({currentNode: 1  });
      const [connections,setConnections] = useState(mockConnections);
      const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
      const [selectedConnectionId, setSelectedConnectionId] = useState<number | null>(null);
-
+    
 
     const selectedNode =  nodes.find(n => n.id === selectedNodeId);
     const selectedConnection = connections.find(c => c.id === selectedConnectionId);
-const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
+    const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
 
-const getNode = (nodeId:number) => {
-      return nodes.find(n => n.id === nodeId);
-}
 
-const getAvailableConnections = (nodeId:number) => {
+    const getAvailableConnections = (nodeId:number) => {
 
-return connections.filter(c =>
-        c.type === "normal" &&
-        (c.from === nodeId || c.to === nodeId)
-    );
+    return connections.filter(c =>
+            c.type === "normal" &&
+            (c.from === nodeId || c.to === nodeId)
+        );
+            
+    }
+
+
+    const movePlayer = (direction:Direction) => {
+
+        setPlayer(prev => {
         
-}
+        
+        const connection = getAvailableConnections(prev.currentNode).find(c => {
 
-const getTargetNodes = (nodeId:number) => {
-return getAvailableConnections(nodeId).map(c => getNode(c.to))  .filter(Boolean);
-
-}
-
-
-
-const movePlayer = (direction: string) => {
-
-     setPlayer(prev => {
-       
-        const availableConnections = getAvailableConnections(prev.currentNode);
-
-        const targetNodes = getTargetNodes(prev.currentNode);
-
-        console.log(targetNodes);
-
-        if (!availableConnections.length) {
-            return prev;
+        if (c.from === prev.currentNode) {
+            return c.directions?.from === direction;
         }
 
+        return c.directions?.to === direction;
+    });
+            if (!connection) {
+                    return prev;
+                }
+        
+                const targetId =
+        connection.from === prev.currentNode
+            ? connection.to
+            : connection.from;
+            
+        
         return {
-            currentNode: availableConnections[0].to
+                currentNode: targetId
         };
 
-    });
+        });
 
-}
+    }
 
         useEffect(() => {
      
@@ -90,7 +94,19 @@ const movePlayer = (direction: string) => {
      
                      });
 
-                      if (e.code === "KeyS") {
+                      if (e.code === "KeyD") {
+                          movePlayer("right");
+                      }
+
+                       if (e.code === "KeyA") {
+                          movePlayer("left");
+                      }
+
+                       if (e.code === "KeyW") {
+                          movePlayer("up");
+                        }
+
+                       if (e.code === "KeyS") {
                           movePlayer("down");
                         }
                     
@@ -123,17 +139,9 @@ const movePlayer = (direction: string) => {
          },[player,connections]);
 
  
-
-
-    
- 
  
 
     const [editorMode, setEditorMode] = useState<EditorMode>("idle");
-
-
-
-
 
    const [nodeType, setNodeType] = useState<NodeType>("node");
 
@@ -158,8 +166,9 @@ const movePlayer = (direction: string) => {
     }
 
     const handleSelectedConnection = (id:number) => {
-       setSelectedNodeId(null);
+       
         setSelectedConnectionId(id);
+        handleOpenPanel("connections")
        
     }
 
