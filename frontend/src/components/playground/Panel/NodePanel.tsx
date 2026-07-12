@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { Form } from "../../ui/Form/Form";
 import { FormField } from "../../ui/Form/FormField";
-import { Select } from "../../ui/Form/Select/Select";
 import {Input} from "../../ui/Form/Input/Input";
 import { Panel } from "../../ui/Panel/Panel";
 import { PanelHeader } from "../../ui/Panel/PanelHeader";
 import { nodeConfig, NodeType } from "../Graph/Node/nodeConfig";
-import Button from "../../ui/Button/Button"
 import { GraphNode } from "../../shared/types/Graph/GraphNode";
-import { DeletePanelButton, PanelDeleteButton } from "../../shared/panel/actions/PanelDeleteButton";
-import { PanelAddButton } from "../../shared/panel/actions/PanelAddButton";
+import {  PanelDeleteButton } from "../../shared/panel/actions/PanelDeleteButton";
 import { PanelActions } from "../../ui/Panel/PanelActions";
 import { NodeTypeButton } from "../NodeTypeButton";
 

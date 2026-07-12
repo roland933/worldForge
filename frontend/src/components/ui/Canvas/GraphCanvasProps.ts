@@ -12,4 +12,8 @@ export type GraphCanvasProps = {
     selectedNode?:GraphNode;
     selectedConnection?:number,
     children?: React.ReactNode;
+    showGrid?:boolean,
+    showNodes?:boolean,
+    showConnections?:boolean,
+    showPlayer?:boolean
 }

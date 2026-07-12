@@ -54,6 +54,10 @@ export function GraphToolbar({toolbarButtonType,handleOpenPanel}) {
                     Connections
                 </ToolbarButton>
 
+                 <ToolbarButton onClick={() => handleOpenPanel("view")}  active={toolbarButtonType === "view"} icon={<Grid3X3 size={16}/>}>
+                    View
+                </ToolbarButton>
+
                 <ToolbarButton onClick={() => handleOpenPanel("background")}  active={toolbarButtonType === "background"} icon={<Grid3X3 size={16}/>}>
                     Background
                 </ToolbarButton>

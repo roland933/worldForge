@@ -16,6 +16,8 @@ import { NodeType } from "../components/playground/Graph/Node/nodeConfig";
 import { SearchSlash } from "lucide-react";
 import { ConnectionPanel } from "../components/playground/Panel/ConnectionPanel";
 import { Direction } from "../components/shared/types/Direction.ts";
+import { ViewPanel } from "../components/playground/Panel/ViewPanel.tsx";
+import { BackgroundType } from "../components/shared/types/BackgroundType.ts";
 
 export function PlaygroundPage() {
         type EditorMode =
@@ -24,8 +26,13 @@ export function PlaygroundPage() {
     | "connecting"
     | "moving";
 
-     
-    
+
+
+     const [showGrid,setShowGrid] = useState(true);
+     const [showNodes, setShowNodes] = useState(true);
+     const [showConnections, setShowConnections] = useState(true);
+     const [showPlayer, setShowPlayer] = useState(true);
+    const [background, setBackground] = useState<BackgroundType>("forest");
 
      const [nodes,setNodes] = useState(mockNodes);
      const [player,setPlayer] = useState({currentNode: 1  });
@@ -162,6 +169,8 @@ export function PlaygroundPage() {
                 setNodeType(node.type as NodeType);
             }
 
+
+            handleOpenPanel("nodes")
           
     }
 
@@ -279,7 +288,11 @@ export function PlaygroundPage() {
                                 nodes={nodes}
                                 selectedNode={selectedNodeId}
                                 selectedConnection={selectedConnectionId}
-                                handleSelectedNode={handleSelectedNode}  
+                                handleSelectedNode={handleSelectedNode} 
+                                showGrid={showGrid}
+                                showNodes={showNodes}
+                                showPlayer={showPlayer}
+                                showConnections={showConnections} 
                                 handleSelectedConnection={handleSelectedConnection}
                                 
                                 >
@@ -317,6 +330,22 @@ export function PlaygroundPage() {
                                        onAdd={handleAddConnection}
                                        selectedConnection={selectedConnection}
                                        onDelete={handleDeleteConnection}
+                                         
+                                       />  
+                         )}
+
+                          {toolbarButtonType === "view" && (
+                            <ViewPanel showGrid={showGrid} 
+                                       setShowGrid={setShowGrid} 
+                                       showNode={showNodes} 
+                                       showConnection={showConnections}
+                                       showPlayer={showPlayer}
+                                       setShowNodes={setShowNodes}
+                                       setShowConnections={setShowConnections}
+                                       setShowPlayer={setShowPlayer}
+                                       background={background}
+                                       setBackground={setBackground}
+                                    
                                          
                                        />  
                          )}

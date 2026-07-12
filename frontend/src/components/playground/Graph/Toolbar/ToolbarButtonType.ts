@@ -3,4 +3,5 @@ export type ToolbarButtonType =
     | "nodes"
     | "connections"
     | "background"
+    |"view"
     | "export";

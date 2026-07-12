@@ -8,7 +8,8 @@ export function PlayerMarker({x,y,label}:PlayerProps) {
 return (
 
     <div
-    className="absolute -translate-x-1/2 -translate-y-full"
+    className="absolute -translate-x-1/2 -translate-y-full  transition-all
+                delay-150"
     style={{
         left: x,
         top:y - MARKER_OFFSET,
@@ -22,7 +23,8 @@ return (
             className="
                 px-2
                 py-1
-               
+                transition-all
+                delay-200
                 rounded-lg
 
                 bg-violet-600

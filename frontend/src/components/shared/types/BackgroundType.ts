@@ -1,0 +1,1 @@
+export type BackgroundType = "forest"|"dungeon"|"desert"|"temple"
