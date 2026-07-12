@@ -4,6 +4,7 @@ import { GraphCanvasProps } from "../../ui/Canvas/GraphCanvasProps";
 import { Grid } from "./Grid";
 import { Node } from "./Node";
 import { Connection } from "./Connection/Connection";
+import { Background } from "./Background";
 export function GraphViewPort({
     nodes,
     connections,
@@ -15,7 +16,8 @@ export function GraphViewPort({
     showGrid,
     showNodes,
     showPlayer,
-    showConnections
+    showConnections,
+    background
 }: GraphCanvasProps) {
     
     const currentNode = nodes.find( node => node.id === player?.currentNode);
@@ -30,6 +32,10 @@ export function GraphViewPort({
                     backdrop-blur-xl 
                     overflow-hidden"
                       >
+
+            {background && (
+                 <Background type={background}/>
+            )}
 
             {showGrid && (
                 <Grid />   

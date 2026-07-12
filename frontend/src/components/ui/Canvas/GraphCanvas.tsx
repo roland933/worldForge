@@ -14,7 +14,8 @@ export function GraphCanvas({
     showGrid,
     showNodes,
     showConnections,
-    showPlayer
+    showPlayer,
+    background,
 }: GraphCanvasProps) {
     
 
@@ -42,6 +43,7 @@ export function GraphCanvas({
                            handleSelectedConnection={handleSelectedConnection}  
                            selectedConnection={selectedConnection}
                            nodes={nodes}
+                           background={background}
                            showGrid={showGrid} 
                            showNodes={showNodes}
                            showConnections={showConnections}

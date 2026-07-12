@@ -5,9 +5,11 @@ type ViewButtonProps = {
     label: string;
     active?: boolean;
     onClick?: () => void;
+    children: React.ReactNode;
+    className?:string;
 }
 
-export function ViewButton({label,active,onClick}:ViewButtonProps) {
+export function ViewButton({label,active,onClick,children,className}:ViewButtonProps) {
 
     return (
         <Button  onClick={onClick} 
@@ -18,12 +20,14 @@ export function ViewButton({label,active,onClick}:ViewButtonProps) {
                  rounded-xl 
                  px-3 
                  text-sm
-                
+                 ${className}   
                 `}
                  
                  >
+
+
                     
-                    {label}
+                    {children}
                  
         </Button>
     )

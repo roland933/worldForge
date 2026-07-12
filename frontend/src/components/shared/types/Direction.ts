@@ -1,5 +1,13 @@
-export type Direction = "left" | "right" | "up" | "down";
 
+export type Direction =
+  | "up"
+  | "down"
+  | "left"
+  | "right"
+  | "up-left"
+  | "up-right"
+  | "down-left"
+  | "down-right";
 export type Directions = {
      "from" : Direction,
      "to" : Direction

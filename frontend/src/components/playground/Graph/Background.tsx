@@ -2,7 +2,7 @@ import { Backgrounds } from "../../../data/Background";
 import { BackgroundType } from "../../shared/types/BackgroundType";
 
 type BackgroundProps = {
-    type:BackgroundType
+    type:BackgroundType | null
 }
 
 
@@ -15,6 +15,7 @@ return (
     <img
         src={Image}
         className="
+        brightness-65
             absolute
             inset-0
             w-full

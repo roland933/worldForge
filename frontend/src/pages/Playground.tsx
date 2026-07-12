@@ -32,7 +32,7 @@ export function PlaygroundPage() {
      const [showNodes, setShowNodes] = useState(true);
      const [showConnections, setShowConnections] = useState(true);
      const [showPlayer, setShowPlayer] = useState(true);
-    const [background, setBackground] = useState<BackgroundType>("forest");
+    const [background, setBackground] = useState<BackgroundType | null>(null);
 
      const [nodes,setNodes] = useState(mockNodes);
      const [player,setPlayer] = useState({currentNode: 1  });
@@ -252,12 +252,8 @@ export function PlaygroundPage() {
                         }
                         : connection
                 )
-            );
-
-
-            
-       
-               
+            ); 
+  
     }
 
 
@@ -292,6 +288,7 @@ export function PlaygroundPage() {
                                 showGrid={showGrid}
                                 showNodes={showNodes}
                                 showPlayer={showPlayer}
+                                background={background}
                                 showConnections={showConnections} 
                                 handleSelectedConnection={handleSelectedConnection}
                                 

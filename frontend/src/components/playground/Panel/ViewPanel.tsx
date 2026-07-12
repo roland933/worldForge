@@ -74,37 +74,24 @@ export function ViewPanel({
                         Background
                     </h3>
                     
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mb-10">
 
                             {Object.entries(Backgrounds).map(([key, value]) => {
-                                return <ViewButton active={background === key} label={key} onClick={() => setBackground(key)}/>
+                                return <ViewButton className="relative h-15 w-25" key={key} active={background === key} label={key} onClick={() => setBackground(key as BackgroundType)}>
+                                            <Background  type={key as BackgroundType} />
+                                      </ViewButton>
                                 
                             })}
                    </div>
 
-                    <div className="relative mt-3 h-24 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/30">
-                        <Background type={background}/>
-                       
+
+                  <div className="text-sm tracking-wider rounded-xl text-violet-200 mb-3 bg-white/5 w-50 border border-white/15 py-1 px-3">
+                        Current theme: {background ? background : '-'}
                     </div>
 
-                </section>
-
-                {/* Player */}
-
-                <section>
-
-                    <h3 className="text-xs uppercase tracking-wider text-white/40 mb-3">
-                        Player
-                    </h3>
-
-                    <Select />
-
-                    <div className="mt-3 h-20 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                        Player Preview
-                    </div>
+              
 
                 </section>
-
             </div>
 
         </Panel>

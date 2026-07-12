@@ -1,3 +1,4 @@
+import { BackgroundType } from "../../shared/types/BackgroundType";
 import { Connection } from "../../shared/types/Graph/Connection";
 import { GraphNode } from "../../shared/types/Graph/GraphNode";
 import {Player} from  "../../shared/types/Player/Player";
@@ -15,5 +16,6 @@ export type GraphCanvasProps = {
     showGrid?:boolean,
     showNodes?:boolean,
     showConnections?:boolean,
-    showPlayer?:boolean
+    showPlayer?:boolean,
+    background?:BackgroundType
 }
