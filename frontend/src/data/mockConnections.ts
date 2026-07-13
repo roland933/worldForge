@@ -21,8 +21,8 @@ export const mockConnections: Connection[] = [
         type: "normal",
         bidirectional: true,
         directions: {
-            from: "up",
-            to: "down"
+            from: "left",
+            to: "right"
         }
     },
 
@@ -40,73 +40,73 @@ export const mockConnections: Connection[] = [
 
     {
         id: 4,
-        from: 3,
+        from: 2,
         to: 5,
         type: "normal",
         bidirectional: true,
         directions: {
-            from: "up-right",
-            to: "down-left"
+            from: "up",
+            to: "down"
         }
     },
 
     {
         id: 5,
-        from: 4,
-        to: 5,
+        from: 3,
+        to: 6,
         type: "normal",
         bidirectional: true,
         directions: {
-            from: "up-left",
-            to: "down-right"
+            from: "up",
+            to: "down"
         }
     },
 
     {
         id: 6,
         from: 5,
-        to: 7,
+        to: 6,
         type: "normal",
         bidirectional: true,
         directions: {
-            from: "up-left",
-            to: "down-right"
+            from: "left",
+            to: "right"
         }
     },
 
     {
         id: 7,
         from: 5,
-        to: 8,
-        type: "empty",
+        to: 9,
+        type: "normal",
         bidirectional: true,
         directions: {
-            from: "up-right",
-            to: "down-left"
+            from: "up",
+            to: "down"
         }
     },
 
     {
         id: 8,
-        from: 7,
-        to: 9,
+        from: 6,
+        to: 7,
         type: "normal",
         bidirectional: true,
         directions: {
-            from: "up-right",
-            to: "down-left"
+            from: "up",
+            to: "down"
         }
     },
 
     {
         id: 9,
-        from: 8,
-        to: 9,
+        from: 9,
+        to: 8,
         type: "normal",
         bidirectional: true,
         directions: {
-            from: "up-left",
-            to: "down-right"
+            from: "right",
+            to: "left"
         }
     },
 
@@ -117,32 +117,8 @@ export const mockConnections: Connection[] = [
         type: "normal",
         bidirectional: true,
         directions: {
-            from: "up-left",
-            to: "down-right"
-        }
-    },
-
-    {
-        id: 11,
-        from: 9,
-        to: 12,
-        type: "normal",
-        bidirectional: true,
-        directions: {
             from: "up",
             to: "down"
-        }
-    },
-
-    {
-        id: 12,
-        from: 9,
-        to: 13,
-        type: "normal",
-        bidirectional: true,
-        directions: {
-            from: "up-right",
-            to: "down-left"
         }
     }
 

@@ -18,14 +18,9 @@ import { ConnectionPanel } from "../components/playground/Panel/ConnectionPanel"
 import { Direction } from "../components/shared/types/Direction.ts";
 import { ViewPanel } from "../components/playground/Panel/ViewPanel.tsx";
 import { BackgroundType } from "../components/shared/types/BackgroundType.ts";
+import { PlayerPanel } from "../components/playground/Panel/PlayerPanel.tsx";
 
 export function PlaygroundPage() {
-        type EditorMode =
-    | "idle"
-    | "placing-node"
-    | "connecting"
-    | "moving";
-
 
 
      const [showGrid,setShowGrid] = useState(true);
@@ -35,7 +30,10 @@ export function PlaygroundPage() {
     const [background, setBackground] = useState<BackgroundType | null>(null);
 
      const [nodes,setNodes] = useState(mockNodes);
-     const [player,setPlayer] = useState({currentNode: 1  });
+     const [player,setPlayer] = useState(
+        {
+            currentNode: 1, 
+            direction: "up" as Direction  });
      const [connections,setConnections] = useState(mockConnections);
      const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
      const [selectedConnectionId, setSelectedConnectionId] = useState<number | null>(null);
@@ -61,26 +59,28 @@ export function PlaygroundPage() {
         setPlayer(prev => {
         
         
-        const connection = getAvailableConnections(prev.currentNode).find(c => {
+                const connection = getAvailableConnections(prev.currentNode).find(c => {
+                       
+                if (c.from === prev.currentNode) {
+                      prev.direction = c.directions?.from as Direction
+                    return c.directions?.from === direction;
+                }
+                prev.direction = c.directions?.to as Direction
+                return c.directions?.to === direction; 
+            });
 
-        if (c.from === prev.currentNode) {
-            return c.directions?.from === direction;
-        }
 
-        return c.directions?.to === direction;
-    });
             if (!connection) {
                     return prev;
                 }
-        
-                const targetId =
-        connection.from === prev.currentNode
-            ? connection.to
-            : connection.from;
+
+            
+                const targetId =   connection.from === prev.currentNode    ? connection.to   : connection.from;
             
         
         return {
-                currentNode: targetId
+                currentNode: targetId,
+                direction:  prev.direction,
         };
 
         });
@@ -147,8 +147,6 @@ export function PlaygroundPage() {
 
  
  
-
-    const [editorMode, setEditorMode] = useState<EditorMode>("idle");
 
    const [nodeType, setNodeType] = useState<NodeType>("node");
 
@@ -257,6 +255,16 @@ export function PlaygroundPage() {
     }
 
 
+    useEffect(() => {
+
+        if(background) {
+                setShowGrid(false);
+        }
+
+
+    },[background])
+
+
 
     return (
         <DashboardLayout>
@@ -347,7 +355,10 @@ export function PlaygroundPage() {
                                        />  
                          )}
 
+                         {toolbarButtonType === "player" && (
+                            <PlayerPanel />
 
+                             )}      
                     </InspectorSidebar>
 
       

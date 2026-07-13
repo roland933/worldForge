@@ -3,5 +3,6 @@ export type ToolbarButtonType =
     | "nodes"
     | "connections"
     | "background"
+    | "player"
     |"view"
     | "export";
