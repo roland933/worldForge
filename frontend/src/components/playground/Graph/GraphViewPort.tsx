@@ -23,7 +23,7 @@ export function GraphViewPort({
 }: GraphCanvasProps) {
     
     const currentNode = nodes.find( node => node.id === player?.currentNode);
-     console.log(player);
+    
     return (
         <div className="
                     relative

@@ -112,7 +112,7 @@ export function Forges() {
             />
 
             <GenerateForgeModal 
-                isOpenorgeModal 
+               
                 isOpen={isGenerateOpen}
                 onClose={handleGenerateCloseModal}
             

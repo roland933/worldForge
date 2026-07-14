@@ -19,23 +19,15 @@ import { generateForge } from "../../../services/forgeServices";
 export function GenerateForgeModal({
     isOpen,
     onClose,
+    handleGenerateForge,
+    setProjectName,
+    setTemplate,
+    setMapSize,
+    projectName,
+    template,
+    mapSize
 }) {
 
-    const [projectName, setProjectName] = useState("");
-    const [template, setTemplate] = useState("react-ts");
-    const [mapSize, setMapSize] = useState("medium");
-
-
-    const handleGenerate = async() => {
-        try {    
-        await generateForge({projectName,template,mapSize})
-       
-
-        onClose();
-        }catch(error) {
-
-        }
-    };
 
     return (
         <Modal
@@ -107,7 +99,7 @@ export function GenerateForgeModal({
                     Cancel
                 </Button>
 
-                <Button onClick={handleGenerate}>
+                <Button onClick={handleGenerateForge}>
                     Generate Forge
                 </Button>
 

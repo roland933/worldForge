@@ -19,15 +19,26 @@ import { Direction } from "../components/shared/types/Direction.ts";
 import { ViewPanel } from "../components/playground/Panel/ViewPanel.tsx";
 import { BackgroundType } from "../components/shared/types/BackgroundType.ts";
 import { PlayerPanel } from "../components/playground/Panel/PlayerPanel.tsx";
+import {  createForge,generateForge } from "../services/forgeServices.js"
 
 export function PlaygroundPage() {
 
+  
+
+     const initialForm = {
+            name: "",
+            world_id: "",
+            description: ""
+    };
 
      const [showGrid,setShowGrid] = useState(true);
      const [showNodes, setShowNodes] = useState(true);
      const [showConnections, setShowConnections] = useState(true);
      const [showPlayer, setShowPlayer] = useState(true);
-    const [background, setBackground] = useState<BackgroundType | null>(null);
+     const [background, setBackground] = useState<BackgroundType | null>(null);
+     const [isGenerateOpen, setIsGenerateOpen] = useState(false);
+     const [errors, setErrors] = useState({});
+        const [form, setForm] = useState( initialForm );
 
      const [nodes,setNodes] = useState(mockNodes);
      const [player,setPlayer] = useState(
@@ -42,6 +53,18 @@ export function PlaygroundPage() {
     const selectedNode =  nodes.find(n => n.id === selectedNodeId);
     const selectedConnection = connections.find(c => c.id === selectedConnectionId);
     const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
+
+
+    const handleGenerateModal = () => {
+        setIsGenerateOpen(true)
+
+    }
+
+    const handleGenerateCloseModal = () => {
+        setIsGenerateOpen(false)
+
+    }
+
 
 
     const getAvailableConnections = (nodeId:number) => {
@@ -146,7 +169,14 @@ export function PlaygroundPage() {
          },[player,connections]);
 
  
- 
+        const handleChange = (field, value) => {
+
+                setForm(prev => ({
+                    ...prev,
+                    [field]: value
+                }));   
+
+        }
 
    const [nodeType, setNodeType] = useState<NodeType>("node");
 
@@ -254,6 +284,22 @@ export function PlaygroundPage() {
   
     }
 
+        const [projectName, setProjectName] = useState("");
+        const [template, setTemplate] = useState("react-ts");
+        const [mapSize, setMapSize] = useState("medium");
+    
+    
+        const handleGenerateForge = async() => {
+            try {    
+            await generateForge({projectName,template,mapSize,map:{nodes:nodes,connections:connections,player:player}})
+           
+    
+            handleGenerateCloseModal();
+            }catch(error) {
+    
+            }
+        };
+
 
     useEffect(() => {
 
@@ -268,13 +314,25 @@ export function PlaygroundPage() {
 
     return (
         <DashboardLayout>
-        <GenerateForgeModal />
+           <GenerateForgeModal
+                projectName={projectName}
+                template={template}
+                mapSize={mapSize}
+                setMapSize={setMapSize}
+                setProjectName={setProjectName}
+                setTemplate={setTemplate} 
+                handleGenerateForge={handleGenerateForge}
+                isOpen={isGenerateOpen}
+                onClose={handleGenerateCloseModal}
+            
+            />
+                        
             <PageHeader
                 title="Playground"
                 description="Prototype and test game generation features."
             >
 
-                  <Button variant={ButtonVariants.SECONDARY} >Generate forge</Button>
+                  <Button variant={ButtonVariants.SECONDARY} onClick={handleGenerateModal}>Generate forge</Button>
                    
                 </PageHeader>
 

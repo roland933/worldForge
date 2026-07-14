@@ -31,7 +31,7 @@ final class GenerateForgeService
 
             $this->readmeGenerator->generate($folder,$data['projectName']);
 
-            $this->mapGenerator->generate($folder);  
+            $this->mapGenerator->generate($folder,$data["map"]);  
           
 
             return [
