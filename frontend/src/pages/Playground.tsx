@@ -20,7 +20,11 @@ import { ViewPanel } from "../components/playground/Panel/ViewPanel.tsx";
 import { BackgroundType } from "../components/shared/types/BackgroundType.ts";
 import { PlayerPanel } from "../components/playground/Panel/PlayerPanel.tsx";
 import {  createForge,generateForge } from "../services/forgeServices.js"
-
+import { GraphViewPort } from "../components/playground/Graph/GraphViewPort.tsx";
+import { useConnections } from "../hooks/useConnections.ts";
+import { usePlayerMovement } from "../hooks/usePlayerMovement.ts";
+import { Connection } from "../components/shared/types/Graph/Connection.ts";
+import { useKeyboard } from "../hooks/useKeyboard.ts";
 export function PlaygroundPage() {
 
   
@@ -38,20 +42,19 @@ export function PlaygroundPage() {
      const [background, setBackground] = useState<BackgroundType | null>(null);
      const [isGenerateOpen, setIsGenerateOpen] = useState(false);
      const [errors, setErrors] = useState({});
-        const [form, setForm] = useState( initialForm );
+    const [form, setForm] = useState( initialForm );
 
      const [nodes,setNodes] = useState(mockNodes);
-     const [player,setPlayer] = useState(
-        {
-            currentNode: 1, 
-            direction: "up" as Direction  });
+
      const [connections,setConnections] = useState(mockConnections);
-     const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
+
      const [selectedConnectionId, setSelectedConnectionId] = useState<number | null>(null);
     
-
+    const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
     const selectedNode =  nodes.find(n => n.id === selectedNodeId);
+
     const selectedConnection = connections.find(c => c.id === selectedConnectionId);
+
     const [pressedKeys,setPressedKey] = useState<Set<string>>(new Set());
 
 
@@ -64,109 +67,10 @@ export function PlaygroundPage() {
         setIsGenerateOpen(false)
 
     }
+    
+    const {player,movePlayer} = usePlayerMovement(connections);
 
-
-
-    const getAvailableConnections = (nodeId:number) => {
-
-    return connections.filter(c =>
-            c.type === "normal" &&
-            (c.from === nodeId || c.to === nodeId)
-        );
-            
-    }
-
-
-    const movePlayer = (direction:Direction) => {
-
-        setPlayer(prev => {
-        
-        
-                const connection = getAvailableConnections(prev.currentNode).find(c => {
-                       
-                if (c.from === prev.currentNode) {
-                      prev.direction = c.directions?.from as Direction
-                    return c.directions?.from === direction;
-                }
-                prev.direction = c.directions?.to as Direction
-                return c.directions?.to === direction; 
-            });
-
-
-            if (!connection) {
-                    return prev;
-                }
-
-            
-                const targetId =   connection.from === prev.currentNode    ? connection.to   : connection.from;
-            
-        
-        return {
-                currentNode: targetId,
-                direction:  prev.direction,
-        };
-
-        });
-
-    }
-
-        useEffect(() => {
-     
-           const handleKeyDown = (e: KeyboardEvent) => {
-                 
-                         setPressedKey(prev => {
-     
-                         const next = new Set(prev);
-     
-                         next.add(e.code);
-     
-                         return next;
-     
-                     });
-
-                      if (e.code === "KeyD") {
-                          movePlayer("right");
-                      }
-
-                       if (e.code === "KeyA") {
-                          movePlayer("left");
-                      }
-
-                       if (e.code === "KeyW") {
-                          movePlayer("up");
-                        }
-
-                       if (e.code === "KeyS") {
-                          movePlayer("down");
-                        }
-                    
-     
-          };
-     
-          const handleKeyUp = (e: KeyboardEvent) => {
-     
-                 setPressedKey(prev => {
-     
-                     const next = new Set(prev);
-     
-                     next.delete(e.code);
-     
-                     return next;
-     
-                 });
-     
-         };
-     
-           window.addEventListener("keydown", handleKeyDown);
-           window.addEventListener("keyup", handleKeyUp);
-     
-     
-             return () => {
-                 window.removeEventListener("keydown", handleKeyDown);
-                 window.removeEventListener("keyup", handleKeyUp);
-             };
-     
-         },[player,connections]);
+     useKeyboard(movePlayer,setPressedKey)
 
  
         const handleChange = (field, value) => {
@@ -291,7 +195,7 @@ export function PlaygroundPage() {
     
         const handleGenerateForge = async() => {
             try {    
-            await generateForge({projectName,template,mapSize,map:{nodes:nodes,connections:connections,player:player}})
+            await generateForge({projectName,template,mapSize,map:{nodes:nodes,connections:connections,player:player,background:background}})
            
     
             handleGenerateCloseModal();
@@ -345,22 +249,27 @@ export function PlaygroundPage() {
                     <div className="flex h-full items-center justify-center rounded-lg">
 
                         <GraphCanvas 
-                                connections={connections} 
-                                player={player} 
-                                nodes={nodes}
-                                selectedNode={selectedNodeId}
-                                selectedConnection={selectedConnectionId}
-                                handleSelectedNode={handleSelectedNode} 
-                                showGrid={showGrid}
-                                showNodes={showNodes}
-                                showPlayer={showPlayer}
-                                background={background}
-                                showConnections={showConnections} 
-                                handleSelectedConnection={handleSelectedConnection}
-                                
+
                                 >
 
-                            <GraphToolbar handleOpenPanel={handleOpenPanel} toolbarButtonType={toolbarButtonType}/>
+                            <GraphToolbar handleOpenPanel={handleOpenPanel} 
+                                          toolbarButtonType={toolbarButtonType}
+                            />
+
+                               <GraphViewPort 
+                                    selectedNode={selectedNode} 
+                                    handleSelectedNode={handleSelectedNode}
+                                    handleSelectedConnection={handleSelectedConnection}  
+                                    selectedConnection={selectedConnection}
+                                    nodes={nodes}
+                                    background={background}
+                                    showGrid={showGrid} 
+                                    showNodes={showNodes}
+                                    showConnections={showConnections}
+                                    showPlayer={showPlayer}
+                                    connections={connections} 
+                                    player={player}
+                                />
 
                         </GraphCanvas>
 
