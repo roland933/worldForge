@@ -63,7 +63,7 @@ useEffect(() => {
     return (
             <img
     src={image}
-    className="absolute h-14 z-10"
+    className="absolute h-12 z-10"
     style={{
         left: x,
         top: y,

@@ -1,19 +1,33 @@
 import { BackgroundType } from "../../../shared/types/BackgroundType";
-import { RoadType } from "./RoadType";
+import  { RoadType } from "./RoadType";
 import { Connection } from "../../../shared/types/Graph/Connection";
 import { GraphNode } from "../../../shared/types/Graph/GraphNode";
+import { getRoadTile } from "../../../../helper/roadTile";
 type RoadProps = {
     type:BackgroundType | null,
     connections: Connection[],
     nodes: GraphNode[]
 }
 
+
 export function Road({ connections, nodes, type }: RoadProps) {
 
-    const image = RoadType[type as BackgroundType];
+    if(!type) {
+        return null;
+    }
+
+   
+    
+    const roadType = RoadType[type as BackgroundType];
+    const TILE_SIZE = 64;
+    const STEP = 60;
+    
+        
 
     return (
         <>
+           
+
             {connections.map(connection => {
 
                                const fromNode = nodes.find(
@@ -28,40 +42,64 @@ export function Road({ connections, nodes, type }: RoadProps) {
                            if (!fromNode || !toNode) {
                                return null;
                            }
-                           const radius = 20
-                          
+                      
+                            
                           
                            const dx = toNode.x - fromNode.x;
                            const dy = toNode.y - fromNode.y;
+                         
+                         
+
                            const length = Math.sqrt(dx * dx + dy * dy);
-       
+
+                           
+
+                          const tileCount = Math.ceil(length / STEP);
+                           
                            const ux = dx / length;
                            const uy = dy / length;
                            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
-                           const startX = fromNode.x + ux * radius;
-                           const startY = fromNode.y + uy * radius;
+                           const startX = fromNode.x + ux 
+                           const startY = fromNode.y + uy 
        
-                           const endX = toNode.x - ux * radius;
-                           const endY = toNode.y - uy * radius;
+                           const endX = toNode.x - ux 
+
+
 
                 return (
-                    <div
-                        key={connection.id}
-                        className="absolute"
+
+
+                      <>
+        {Array.from({ length: tileCount }).map((_, index) => {
+                           const x = startX + ux * STEP * index;
+                            const y = startY + uy * STEP * index;
+            
+               return (
+
+                <img
+                        src={roadType}
+                        className="absolute pointer-events-none"
                         style={{
-                            left: startX,
-                            top: startY,
-                            width: length,
-                            height: 24,
-
-                            backgroundImage: `url(${image})`,
-                            backgroundSize: "100% 100%",
-                            backgroundRepeat: "repeat-x",
-
-                            transformOrigin: "left center",
-                            transform: `rotate(${angle}deg)`
+                            width: TILE_SIZE,
+                            height: TILE_SIZE,
+                            left: x,
+                            top: y,
+                            transform: `
+                                translate(-50%, -50%)
+                                
+                            `
                         }}
                     />
+
+
+                );
+            
+
+        })}
+    </>
+
+
+          
                 );
 
             })}

@@ -33,7 +33,7 @@ export function Connection({connections,handleSelectedConnection,selectedConnect
                            if (!fromNode || !toNode) {
                                return null;
                            }
-                           const radius = 20
+                           const radius = 36
        
                            const dx = toNode.x - fromNode.x;
                            const dy = toNode.y - fromNode.y;

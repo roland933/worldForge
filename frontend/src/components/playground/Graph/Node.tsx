@@ -20,8 +20,8 @@ export function Node({nodes,handleSelectedNode,selectedNode}:NodeProps) {
                                 key={node.id}
                                 className={`
                                 absolute 
-                                w-11 
-                                h-11 
+                                w-[64px] 
+                                h-[64px] 
                                 rounded-full
                                 cursor-pointer
                                 ${selectedNode === node.id ? 'shadow-[0_0_25px_rgba(139,92,246,.75)] !border-violet-400' : ''}
@@ -33,8 +33,8 @@ export function Node({nodes,handleSelectedNode,selectedNode}:NodeProps) {
                                  text-white
                                 `}
                                 style={{
-                                    left: node.x -20,
-                                    top: node.y - 20,
+                                    left: node.x - 32,
+                                    top: node.y - 32,
                                 }}
                             >
                                 {node.id}

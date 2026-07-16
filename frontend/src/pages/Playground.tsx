@@ -26,6 +26,7 @@ import { usePlayerMovement } from "../hooks/usePlayerMovement.ts";
 import { Connection } from "../components/shared/types/Graph/Connection.ts";
 import { useKeyboard } from "../hooks/useKeyboard.ts";
 import { useCamera } from "../hooks/useCamera.ts";
+import { getRoadTile } from "../helper/roadTile.ts";
 export function PlaygroundPage() {
 
   
@@ -210,13 +211,11 @@ export function PlaygroundPage() {
 
         if(background) {
                 setShowGrid(false);
+                setShowConnections(false);
         }
 
 
     },[background])
-
-
-
 
 
 

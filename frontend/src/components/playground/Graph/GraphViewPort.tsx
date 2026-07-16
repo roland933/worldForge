@@ -7,6 +7,7 @@ import { Connection } from "./Connection/Connection";
 import { Background } from "./Background";
 import { Road } from "./Road/Road";
 import { Player } from "./Player";
+import { getRoadTile } from "../../../helper/roadTile";
 
 export function GraphViewPort({
     nodes,
@@ -32,6 +33,10 @@ export function GraphViewPort({
         x: currentNode.x - 1500 / 2,
         y: currentNode.y - 800 / 2,
     };
+
+     {nodes.map(node => {
+             const tile = getRoadTile(node.id,connections)
+            })}
     
     return (
         <div className="
@@ -59,7 +64,7 @@ export function GraphViewPort({
                 <Grid />   
             )}            
                    
-
+            <Road  connections={connections} type={background} nodes={nodes}/>
             {player && showPlayer && (
                <PlayerMarker label="You" x={currentNode.x} y={currentNode.y} />
             )}
