@@ -25,6 +25,7 @@ import { useConnections } from "../hooks/useConnections.ts";
 import { usePlayerMovement } from "../hooks/usePlayerMovement.ts";
 import { Connection } from "../components/shared/types/Graph/Connection.ts";
 import { useKeyboard } from "../hooks/useKeyboard.ts";
+import { useCamera } from "../hooks/useCamera.ts";
 export function PlaygroundPage() {
 
   
@@ -213,6 +214,9 @@ export function PlaygroundPage() {
 
 
     },[background])
+
+
+
 
 
 

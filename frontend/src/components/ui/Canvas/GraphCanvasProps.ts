@@ -17,5 +17,6 @@ export type GraphCanvasProps = {
     showNodes?:boolean,
     showConnections?:boolean,
     showPlayer?:boolean,
-    background?:BackgroundType
+    background?:BackgroundType,
+    camera?:{x:number,y:number}
 }

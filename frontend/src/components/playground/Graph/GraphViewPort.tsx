@@ -7,6 +7,7 @@ import { Connection } from "./Connection/Connection";
 import { Background } from "./Background";
 import { Road } from "./Road/Road";
 import { Player } from "./Player";
+
 export function GraphViewPort({
     nodes,
     connections,
@@ -19,10 +20,18 @@ export function GraphViewPort({
     showNodes,
     showPlayer,
     showConnections,
-    background
+    background,
+    
 }: GraphCanvasProps) {
+
+    
     
     const currentNode = nodes.find( node => node.id === player?.currentNode);
+
+    const camera = {
+        x: currentNode.x - 1500 / 2,
+        y: currentNode.y - 800 / 2,
+    };
     
     return (
         <div className="
@@ -34,6 +43,13 @@ export function GraphViewPort({
                     backdrop-blur-xl 
                     overflow-hidden"
                       >
+
+                <div className="world relative"  style={{
+        transform: `translate(${-camera.x}px, ${-camera.y}px)`,
+        width: 1500,
+        height: 2000
+    }}>        
+                   
 
             {background && (
                  <Background type={background}/>
@@ -63,7 +79,7 @@ export function GraphViewPort({
                         handleSelectedNode={handleSelectedNode} 
                         nodes={nodes}/>  
             )}     
-
+</div>  
         </div>
     );
 }
