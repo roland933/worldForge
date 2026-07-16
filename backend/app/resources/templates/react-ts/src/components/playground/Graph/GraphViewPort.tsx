@@ -19,16 +19,21 @@ export function GraphViewPort({
     showNodes,
     showPlayer,
     showConnections,
-    background
+    background,
+    viewportRef,
 }: GraphCanvasProps) {
     
     const currentNode = nodes.find( node => node.id === player?.currentNode);
+
+ 
+
     
     return (
-        <div className="
+        <div         ref={viewportRef}
+                    className="
                     relative
                     w-full 
-                    h-[600px]
+                    h-[700px]
                     border 
                   border-white/15
                     backdrop-blur-xl 

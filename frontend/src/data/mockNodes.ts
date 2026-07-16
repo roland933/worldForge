@@ -1,15 +1,18 @@
 import { GraphNode } from "../components/shared/types/Graph/GraphNode";
+
 const CENTER = 750;
 
-const LEFT = 620;
-const RIGHT = 880;
 
-const ROW1 = 540;
-const ROW2 = 460;
-const ROW3 = 380;
-const ROW4 = 300;
+
+const LEFT = 400;
+const RIGHT = 1100;
+
+const ROW1 = 560;
+const ROW2 = 420;
+const ROW3 = 280;
+const ROW4 = 140;
 const ROW5 = 220;
-const ROW6 = 60;
+const ROW6 = 40;
 
 export const mockNodes: GraphNode[] = [
 
@@ -30,6 +33,6 @@ export const mockNodes: GraphNode[] = [
 
     { id: 9, x: CENTER, y: ROW4, type: "empty" },
 
-    { id: 11, x: CENTER, y: ROW6, type: "boss" },
+    { id: 11, x: CENTER, y: ROW6, type: "empty" },
 
 ];

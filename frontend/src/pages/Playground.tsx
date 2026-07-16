@@ -42,7 +42,7 @@ export function PlaygroundPage() {
      const [background, setBackground] = useState<BackgroundType | null>(null);
      const [isGenerateOpen, setIsGenerateOpen] = useState(false);
      const [errors, setErrors] = useState({});
-    const [form, setForm] = useState( initialForm );
+     const [form, setForm] = useState( initialForm );
 
      const [nodes,setNodes] = useState(mockNodes);
 
