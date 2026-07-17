@@ -34,9 +34,12 @@ export function GraphViewPort({
         y: currentNode.y - 800 / 2,
     };
 
-     {nodes.map(node => {
+      console.log(getRoadTile(2,connections))   
+     /*{nodes.map(node => {
              const tile = getRoadTile(node.id,connections)
-            })}
+            })}*/
+
+            
     
     return (
         <div className="
