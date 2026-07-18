@@ -1,3 +1,4 @@
+
 import { BackgroundType } from "../../../shared/types/BackgroundType";
 import  { RoadType } from "./RoadType";
 import { Connection } from "../../../shared/types/Graph/Connection";
@@ -21,13 +22,12 @@ export function Road({ connections, nodes, type }: RoadProps) {
     const roadType = RoadType[type as BackgroundType];
     const TILE_SIZE = 64;
     const STEP = 60;
-    
-        
 
+     
+           
     return (
         <>
-           
-
+    
             {connections.map(connection => {
 
                                const fromNode = nodes.find(
@@ -43,17 +43,11 @@ export function Road({ connections, nodes, type }: RoadProps) {
                                return null;
                            }
                       
-                            
-                          
+            
                            const dx = toNode.x - fromNode.x;
                            const dy = toNode.y - fromNode.y;
-                         
-                         
-
+                     
                            const length = Math.sqrt(dx * dx + dy * dy);
-
-                           
-
                           const tileCount = Math.ceil(length / STEP);
                            
                            const ux = dx / length;
@@ -64,20 +58,25 @@ export function Road({ connections, nodes, type }: RoadProps) {
        
                            const endX = toNode.x - ux 
 
-
+const rotation =
+    Math.abs(dx) > Math.abs(dy)
+        ? 90
+        : 0;
 
                 return (
 
 
                       <>
-        {Array.from({ length: tileCount }).map((_, index) => {
+        {Array.from({ length: Math.max(0, tileCount - 1) }).map((_, index) => {
                            const x = startX + ux * STEP * index;
                             const y = startY + uy * STEP * index;
+
+                                
             
                return (
 
                 <img
-                        src={roadType}
+                        src={roadType.straight}
                         className="absolute pointer-events-none"
                         style={{
                             width: TILE_SIZE,
@@ -85,7 +84,8 @@ export function Road({ connections, nodes, type }: RoadProps) {
                             left: x,
                             top: y,
                             transform: `
-                                translate(-50%, -50%)
+                                translate(-50%, -50%),
+                                 rotate(${rotation}deg)
                                 
                             `
                         }}
@@ -103,9 +103,42 @@ export function Road({ connections, nodes, type }: RoadProps) {
                 );
 
             })}
+
+                      {nodes.map(node => {
+
+                        const road = getRoadTile(node, connections);
+
+                return (
+                    <img
+                        key={node.id}
+                        src={roadType[road.tile]}
+                        className="absolute pointer-events-none "
+                        style={{
+                            width: TILE_SIZE,
+                            height: TILE_SIZE,
+                            
+                           
+                            left: node.x,
+                            top: node.y,
+                            transform: `
+        translate(-50%, -50%)
+        rotate(${road.rotation}deg)`
+                            
+                        }}
+                    />
+                );
+
+            })}   
+
         </>
+
+
+
+
+
     );
 
-}
+ 
 
+}
 
